@@ -8,5 +8,7 @@
 </head>
 <body>
 	<a href="Login.action">ログインへ</a>
+	<!-- 各それぞれメンバーの名前を書いて下さい -->
+	<p>松永悠志</p>
 </body>
 </html>
