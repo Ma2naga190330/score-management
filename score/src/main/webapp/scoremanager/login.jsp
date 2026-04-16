@@ -8,7 +8,19 @@
 	</c:param>
 	
 	<c:param name="scripts">
-	
+	<script>
+	document.addEventListener('DOMContentLoaded', function (event) {
+	    const input = document.getElementById("password");
+	    const check = document.getElementById("preview");
+	    check.addEventListener('change', function () {
+	        if (check.checked) {
+	            input.type = 'text';
+	        } else {
+	            input.type = 'password';
+	        }
+	    });
+	});
+	</script>
 	</c:param>
 	
 	<c:param name="content">
