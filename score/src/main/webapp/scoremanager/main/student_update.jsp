@@ -12,17 +12,17 @@
                 学生情報変更
             </h2>
 
-            <form action="StudentUpdate.action" method="post" class="px-4">
+            <form action="StudentUpdateExecute.action" method="post" class="px-4">
 
                 <div class="mb-3">
                     <label class="form-label">入学年度</label>
-                    <input type="text" name="ent_year" class="form-control"
+                    <input type="text" name="ent_year" class="form-control-plaintext"
                            value="${student.entYear}" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">学生番号</label>
-                    <input type="text" name="no" class="form-control"
+                    <input type="text" name="no" class="form-control-plaintext"
                            value="${student.no}" readonly>
                 </div>
 
