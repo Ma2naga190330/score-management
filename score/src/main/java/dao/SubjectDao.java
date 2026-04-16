@@ -55,7 +55,7 @@ public class SubjectDao extends Dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 		try {
-			statement = connection.prepareStatement(baseSql+"order by cd asc");
+			statement = connection.prepareStatement(baseSql+" order by cd asc");
 			statement.setString(1, school.getCd());
 			rSet = statement.executeQuery();
 			while (rSet.next()) {
@@ -63,6 +63,7 @@ public class SubjectDao extends Dao {
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
 				subject.setSchool(school);
+				list.add(subject);
 			}
 		}catch (Exception e) {
 			throw e;

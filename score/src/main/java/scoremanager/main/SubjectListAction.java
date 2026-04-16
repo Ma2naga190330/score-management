@@ -14,13 +14,12 @@ import tool.Action;
 public class SubjectListAction extends Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("loginAction>OK");
 		HttpSession session = request.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		School school = teacher.getSchool();
 		SubjectDao dao = new SubjectDao();
 		List<Subject> list = dao.filter(school);
-		request.setAttribute("list", list);
+		request.setAttribute("subjects", list);
 		request.getRequestDispatcher("subject_list.jsp").forward(request, response);
 	}
 }

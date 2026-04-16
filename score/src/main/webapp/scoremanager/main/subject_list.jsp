@@ -17,18 +17,14 @@
             </div>
 
             <c:choose>
-            	<!-- subjectsが空文字またはnullどうかを判定しループに入る -->
-                <c:when test="${not empty subjects}">
+                <c:when test="${subjects.size()>0}">
                     <table class="table table-hover">
-                        <thead>
                             <tr>
                                 <th>科目コード</th>
                                 <th>科目名</th>
-                                <th></th>
-                                <th></th>
+                                <th>変更</th>
+                                <th>削除</th>
                             </tr>
-                        </thead>
-                        <tbody>
                             <c:forEach var="subject" items="${subjects}">
                                 <tr>
                                     <td>${subject.cd}</td>
@@ -37,7 +33,6 @@
                                     <td><a href="SubjectDelete.action?cd=${subject.cd}">削除</a></td>
                                 </tr>
                             </c:forEach>
-                        </tbody>
                     </table>
                 </c:when>
                 <c:otherwise>
