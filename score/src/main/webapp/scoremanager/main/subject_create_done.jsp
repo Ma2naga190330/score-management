@@ -13,8 +13,10 @@
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
 		
-		<div class="mt-4 mb-4 text-center">
-			<p class="bg-success">登録が完了しました</p>
+		<div class="bg-success p-1" style="--bs-bg-opacity: .5;">
+			<label class="d-flex justify-content-center align-items-center">
+				登録が完了しました
+			</label>
 		</div>
 		
 		<div class="d-flex align-items-center gap-5 mt-2">
