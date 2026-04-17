@@ -79,6 +79,8 @@ public class ClassNumDao extends Dao{
 		}
 		return list;
 	}
+
+}
 	
 //	public boolean save(ClassNum classNum) throws Exception{
 //		
@@ -86,4 +88,4 @@ public class ClassNumDao extends Dao{
 //	public boolean save(ClassNum classNum, String newClassNum)throws Exception{
 //		
 //	}
-}
+
