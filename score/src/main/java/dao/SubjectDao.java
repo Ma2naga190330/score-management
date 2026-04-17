@@ -96,13 +96,15 @@ public class SubjectDao extends Dao {
 				statement = connection.prepareStatement("insert into subject(cd, name, school_cd) values(?, ?, ?)");
 				statement.setString(1, subject.getCd());
 				statement.setString(2, subject.getName());
-				statement.setString(3, subject.getSchool().getCd());
+				School sc = subject.getSchool();
+				statement.setString(3, sc.getCd());
 			}else {
 				
-				statement = connection.prepareStatement("update subject set name = ? where cd = ? and school_cd");
+				statement = connection.prepareStatement("update subject set name = ? where cd = ? and school_cd = ?");
 				statement.setString(1, subject.getName());
 				statement.setString(2, subject.getCd());
-				statement.setString(3, subject.getSchool().getCd());
+				School sc = subject.getSchool();
+				statement.setString(3, sc.getCd());
 			}
 			count = statement.executeUpdate();
 		}catch (Exception e) {
@@ -134,12 +136,14 @@ public class SubjectDao extends Dao {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			String school_cd = subject.getSchool().getCd();
+			School sc = subject.getSchool();
+			String school_cd = sc.getCd();
 			String subject_cd = subject.getCd();
 			statement = connection.prepareStatement("delete from subject where school_cd = ? and cd = ?");
 			statement.setString(1, school_cd);
 			statement.setString(2, subject_cd);
 			int num = statement.executeUpdate();
+			System.out.println("delete >>"+num);
 			if (num > 0) {
 				return true;
 			}else {

@@ -24,10 +24,14 @@ public class SubjectUpdateExecuteAction extends Action{
 		subject.setName(name);
 		subject.setSchool(teacher.getSchool());
 		
-		sDao.save(subject);
-		
-		req.setAttribute("cd", cd);
-		req.setAttribute("name", name);
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
-	}
+		boolean flag = sDao.save(subject);
+		if (flag) {
+			req.setAttribute("cd", cd);
+			req.setAttribute("name", name);
+			req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+
+		}else {
+			req.getRequestDispatcher("/error.jsp").forward(req,res);
+		}
+			}
 }
