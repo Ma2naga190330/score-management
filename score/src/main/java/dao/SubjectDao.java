@@ -98,9 +98,10 @@ public class SubjectDao extends Dao {
 
 		try {
 
-			statement = connection.prepareStatement(baseSql+"order by cd asc");
+			statement = connection.prepareStatement(baseSql+" order by cd asc");
 
 			statement.setString(1, school.getCd());
+
 
 			rSet = statement.executeQuery();
 
@@ -113,6 +114,8 @@ public class SubjectDao extends Dao {
 				subject.setName(rSet.getString("name"));
 
 				subject.setSchool(school);
+				
+				list.add(subject);
 
 			}
 
@@ -180,7 +183,7 @@ public class SubjectDao extends Dao {
 
 			}else {
 
-				statement = connection.prepareStatement("update subject set name = ? where cd = ? and school_cd");
+				statement = connection.prepareStatement("update subject set name = ? where cd = ? and school_cd=?");
 
 				statement.setString(1, subject.getName());
 
