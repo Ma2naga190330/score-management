@@ -8,19 +8,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class SubjectDeleteAction extends Action{
+public class SubjectUpdateAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res)throws Exception{
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		
-		String subject_cd = req.getParameter("cd");
+		String cd = req.getParameter("cd");
+//		String name = req.getParameter("name");
 		
+		// DBから科目データを取得する
 		SubjectDao sDao = new SubjectDao();
-		Subject subject = sDao.get(subject_cd, teacher.getSchool());
+		// 戻り値Subject型を受け取る
+		Subject subject = sDao.get(cd, teacher.getSchool());
 
-		req.setAttribute("subject_cd", subject.getCd());
-		req.setAttribute("subject_name", subject.getName());
-		req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
+		req.setAttribute("cd", subject.getCd());
+		req.setAttribute("name", subject.getName());
+		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
 	}
 }
