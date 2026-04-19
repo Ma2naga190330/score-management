@@ -10,19 +10,23 @@ public class Subject implements Serializable{
 	public String getCd() {
 		return cd;
 	}
-	public School getSchool() {
-		return school;
-	}
+	
 	public String getName() {
 		return name;
+	}
+	
+	public School getSchool() {
+		return school;
 	}
 	
 	public void setCd(String cd) {
 		this.cd = cd;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public void setSchool(School school) {
 		this.school = school;
 	}
