@@ -29,8 +29,10 @@
 			<div class="h3 fw-norma bg-secondary bg-opacity-10 pt-2 pb-2">
 				<h2 class="d-flex justify-content-center align-items-center">ログイン</h2>
 			</div>
-				<div class="row mx-5 my-5">
-					<c:if test="${error != null}">${error}</c:if>
+				<div class="row mx-5 my-3">
+					<c:if test="${error != null}">
+						<div class="text-center mt-1 mb-3">${error}</div>
+					</c:if>
 					<label id="login-id" class="mx-3 mb-3 border rounded-2" style="color: gray;"> 
 						ＩＤ<br><input type="text" name="id" value="${id}" for="login-id" class="border-0" style="outline: none;">
 					</label>
