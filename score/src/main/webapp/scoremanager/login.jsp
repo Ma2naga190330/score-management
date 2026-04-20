@@ -8,7 +8,19 @@
 	</c:param>
 	
 	<c:param name="scripts">
-	
+	<script>
+	document.addEventListener('DOMContentLoaded', function (event) {
+	    const input = document.getElementById("password");
+	    const check = document.getElementById("preview");
+	    check.addEventListener('change', function () {
+	        if (check.checked) {
+	            input.type = 'text';
+	        } else {
+	            input.type = 'password';
+	        }
+	    });
+	});
+	</script>
 	</c:param>
 	
 	<c:param name="content">
@@ -34,7 +46,6 @@
 					<div class="d-flex justify-content-center">
 						<button class="btn btn-primary mt-3" name="login" type="submit">ログイン</button>
 					</div>
-				</div></div>
 			</form>
 		</div>
 	</c:param>
