@@ -9,7 +9,7 @@
 	<c:param name="content">
 			<section class="me=4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
-			<form method="get">
+			<form action="StudentCreateExecute.action" method="get">
 				<!-- 入学年度の入力 -->
 				<label class="form-label" for="ent-year-select">入学年度</label>
 					<!-- 今年を基準に10年前から10年後までの年リストを取得 -->
@@ -38,7 +38,7 @@
 				<select class="form-select" id="student-class-select" name="class_num">
 						<option value="0">------------</option>
 						<c:forEach var="num" items ="${class_num_set}">
-							<option value ="${num}"<c:if test="${num=f2}">selected</c:if>${num }</option>
+							<option value ="${num}">${num}</option>
 						</c:forEach>
 				</select>
 				<!-- 登録して終了するボタン -->
@@ -47,9 +47,7 @@
 				</div>
 				<!-- 戻るボタン -->
 				<a href="StudentList.action">戻る</a>
-
 			</form>
 		</section>
 	</c:param>
 </c:import>
- 

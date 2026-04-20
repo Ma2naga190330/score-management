@@ -46,7 +46,6 @@
 					<div class="d-flex justify-content-center">
 						<button class="btn btn-primary mt-3" name="login" type="submit">ログイン</button>
 					</div>
-				</div></div>
 			</form>
 		</div>
 	</c:param>
