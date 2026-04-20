@@ -52,7 +52,14 @@
 
                     <div class="col-2">
                         <label class="form-label">回数</label>
-                        <input type="number" class="form-control" name="no" value="${no}" min="1" max="10">
+                        <select class="form-select" name="test_count">
+                            <option value="0">------------</option>
+                            <c:forEach var="tes" items="${test_count}">
+                                <option value="${tes}">
+                                    ${tes}
+                                </option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <div class="col-1 text-center">

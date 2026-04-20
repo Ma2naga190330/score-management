@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bean.Subject;
 import bean.Teacher;
 import bean.Test;
 import dao.ClassNumDao;
-//import dao.SubjectDao;
-//import dao.SubjectDao;
+import dao.SubjectDao;
 import dao.TestDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,11 +33,10 @@ public class TestRegistAction extends Action{
 		int num = 0;
 		
 		List<Test> tests = null;
-		LocalDate todaysDate = LocalDate.now();
-		int year = todaysDate.getYear();
 		
-		ClassNumDao cNumDao = new ClassNumDao();
-//		SubjectDao sDao = new SubjectDao();
+		
+		
+		SubjectDao sDao = new SubjectDao();
 		TestDao tDao = new TestDao();
 		Map<String, String> errors = new HashMap<>();
 		
@@ -53,13 +52,28 @@ public class TestRegistAction extends Action{
 		if (numStr != null && !numStr.equals("0")) {
 			num = Integer.parseInt(numStr);
 		}
+		// クラス
+		ClassNumDao cNumDao = new ClassNumDao();
+		List<String> class_num = cNumDao.filter(teacher.getSchool());
 		
+		// 年度
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
 		List<Integer> entYearSet = new ArrayList<>();
 		for (int i = year - 10; i < year + 1; i++) {
 			entYearSet.add(i);
+//			System.out.println(i);
 		}
+		// 科目リスト
+		List<Subject> subject_list = sDao.filter(teacher.getSchool());
+		// 回数
+		List<Integer> test_count = new ArrayList<>();
+		test_count.add(1);test_count.add(2);
 		
-//		req.setAttribute("subject_list", );
+		req.setAttribute("ent_year_set", entYearSet);
+		req.setAttribute("subject_list", subject_list);
+		req.setAttribute("test_count", test_count);
+		req.setAttribute("class_num_set", class_num);
 		
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
