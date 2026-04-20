@@ -69,6 +69,9 @@
                 </h4>
 
                 <form action="TestRegistExecute.action" method="post">
+                <input type="hidden" name="subject_cd" value="${subject_cd}">
+				<input type="hidden" name="class_num" value="${class_num}">
+				<input type="hidden" name="no" value="${no}">
                     <table class="table table-hover mx-3">
                         <tr>
                             <th>入学年度</th>
@@ -85,8 +88,9 @@
                                 <td>${t.student.no}</td>
                                 <td>${t.student.name}</td>
                                 <td>
+                                	<input type="hidden" name="student_no" values="${t.student.no }">
                                     <input type="number"
-                                           name="point_${t.student.no}"
+                                           name="point"
                                            class="form-control"
                                            value="${t.point}"
                                            min="0" max="100" required>
