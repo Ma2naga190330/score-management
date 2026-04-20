@@ -11,19 +11,17 @@
 	
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
-		
+			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
+			
 		<div class="bg-success p-1" style="--bs-bg-opacity: .5;">
 			<label class="d-flex justify-content-center align-items-center">
-				登録が完了しました
+				変更が完了しました
 			</label>
 		</div>
 		
-		<div class="d-flex align-items-center gap-5 mt-2">
-			<a href="StudentCreate.action">戻る</a>
-			<a href="StudentList.action">学生一覧</a>
+		<div class="d-flex align-itmes-center gap-5 mt-2">
+			<a href="SubjectList.action">科目一覧</a>
 		</div>
 		</section>
 	</c:param>
 </c:import>
- 

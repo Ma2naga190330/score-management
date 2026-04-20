@@ -11,7 +11,7 @@
 	
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
+			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
 		
 		<div class="bg-success p-1" style="--bs-bg-opacity: .5;">
 			<label class="d-flex justify-content-center align-items-center">
@@ -20,10 +20,9 @@
 		</div>
 		
 		<div class="d-flex align-items-center gap-5 mt-2">
-			<a href="StudentCreate.action">戻る</a>
-			<a href="StudentList.action">学生一覧</a>
+			<a href="SubjectCreate.action">戻る</a>
+			<a href="SubjectList.action">科目一覧</a>
 		</div>
 		</section>
 	</c:param>
 </c:import>
- 
