@@ -89,11 +89,11 @@ public class TestDao extends Dao {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
-		String sql = " ent_year = ? and class_num = ? and subject_cd = ? and no = ?";
+		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ?";
 		
 		try {
-			System.out.println(baseSql+sql);
-			statement = connection.prepareStatement(baseSql+sql);
+			System.out.println(sql);
+			statement = connection.prepareStatement(sql);
 			System.out.println("sql");
 			statement.setString(1, school.getCd());
 			System.out.println("sql2");
