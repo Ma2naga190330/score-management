@@ -72,7 +72,7 @@
 
             <c:if test="${not empty tests}">
                 <h4 class="ms-3 mb-3">
-                    科目：${tests[0].subject.name}（${tests[0].no}回）
+                    科目：${sub.name}（${f4}回）
                 </h4>
 
                 <form action="TestRegistExecute.action" method="post">
@@ -105,6 +105,10 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    <input type="hidden" name="entYear" value="${f1}">
+                    <input type="hidden" name="classNum" value="${f2}">
+                    <input type="hidden" name="subjectCd" value="${f3}">
+                    <input type="hidden" name="num" value="${f4}">
 
                     <div class="text-end mx-3">
                         <button type="submit" class="btn btn-primary">登録して終了</button>
