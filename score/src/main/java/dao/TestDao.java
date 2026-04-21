@@ -92,22 +92,14 @@ public class TestDao extends Dao {
 		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ?";
 		
 		try {
-			System.out.println(sql);
 			statement = connection.prepareStatement(sql);
-			System.out.println("sql");
 			statement.setString(1, school.getCd());
-			System.out.println("sql2");
 			statement.setInt(2, entYear);
-			System.out.println("sql3");
 			statement.setString(3, classNum);
-			System.out.println("sql4");
 			statement.setString(4, subject.getCd());
-			System.out.println("sql5");
 			statement.setInt(5, num);
-			System.out.println("sql6");
 			
 			rSet = statement.executeQuery();
-			System.out.println("sqlcorrect");
 			
 			list = postFilter(rSet, school);
 		}catch (Exception e) {
