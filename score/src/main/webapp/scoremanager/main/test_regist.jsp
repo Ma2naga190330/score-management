@@ -16,7 +16,7 @@
 
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
-                        <select class="form-select" name="ent_year">
+                        <select class="form-select" name="f1">
                             <option value="0">------------</option>
                             <c:forEach var="year" items="${ent_year_set}">
                                 <option value="${year}" <c:if test="${year == ent_year}">selected</c:if>>
@@ -28,7 +28,7 @@
 
                     <div class="col-3">
                         <label class="form-label">クラス</label>
-                        <select class="form-select" name="class_num">
+                        <select class="form-select" name="f2">
                             <option value="0">------------</option>
                             <c:forEach var="num" items="${class_num_set}">
                                 <option value="${num}" <c:if test="${num == class_num}">selected</c:if>>
@@ -40,7 +40,7 @@
 
                     <div class="col-3">
                         <label class="form-label">科目</label>
-                        <select class="form-select" name="subject_cd">
+                        <select class="form-select" name="f3">
                             <option value="0">------------</option>
                             <c:forEach var="sub" items="${subject_list}">
                                 <option value="${sub.cd}" <c:if test="${sub.cd == subject_cd}">selected</c:if>>
@@ -52,7 +52,7 @@
 
                     <div class="col-2">
                         <label class="form-label">回数</label>
-                        <select class="form-select" name="test_count">
+                        <select class="form-select" name="f4">
                             <option value="0">------------</option>
                             <c:forEach var="tes" items="${test_count}">
                                 <option value="${tes}">

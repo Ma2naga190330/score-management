@@ -33,17 +33,17 @@ public class TestRegistAction extends Action{
 		int num = 0;
 		
 		List<Test> tests = null;
-		
-		
-		
+
 		SubjectDao sDao = new SubjectDao();
 		TestDao tDao = new TestDao();
 		Map<String, String> errors = new HashMap<>();
-		
+		// データの取得
 		entYearStr = req.getParameter("f1");
 		classNum = req.getParameter("f2");
 		subjectCd = req.getParameter("f3");
 		numStr = req.getParameter("f4");
+		System.out.println(entYear+" "+classNum+" "+subjectCd+" "+numStr);
+		// 取得してきたデータが1つでもnullならばerror表示
 		
 		if (entYearStr != null && !entYearStr.equals("0")) {
 			entYear = Integer.parseInt(entYearStr);
@@ -62,19 +62,18 @@ public class TestRegistAction extends Action{
 		List<Integer> entYearSet = new ArrayList<>();
 		for (int i = year - 10; i < year + 1; i++) {
 			entYearSet.add(i);
-//			System.out.println(i);
 		}
 		// 科目リスト
 		List<Subject> subject_list = sDao.filter(teacher.getSchool());
 		// 回数
 		List<Integer> test_count = new ArrayList<>();
 		test_count.add(1);test_count.add(2);
-		
+		// プルダウン検索データ
 		req.setAttribute("ent_year_set", entYearSet);
 		req.setAttribute("subject_list", subject_list);
 		req.setAttribute("test_count", test_count);
 		req.setAttribute("class_num_set", class_num);
-		
+		// フォワード
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
 }
