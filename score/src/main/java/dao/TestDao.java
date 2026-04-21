@@ -84,21 +84,30 @@ public class TestDao extends Dao {
 	}
 	
 	public List<Test> filter(int entYear, String classNum, Subject subject, int num, School school) throws Exception {
+		System.out.println(entYear);
 		List<Test> list = new ArrayList<>();
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
-		String sql = " ent_Year = ? and class_num = ? and subject_cd = ? and no = ?";
+		String sql = " ent_year = ? and class_num = ? and subject_cd = ? and no = ?";
 		
 		try {
-			statement = connection.prepareStatement(baseSql + sql);
+			System.out.println(baseSql+sql);
+			statement = connection.prepareStatement(baseSql+sql);
+			System.out.println("sql");
 			statement.setString(1, school.getCd());
+			System.out.println("sql2");
 			statement.setInt(2, entYear);
+			System.out.println("sql3");
 			statement.setString(3, classNum);
+			System.out.println("sql4");
 			statement.setString(4, subject.getCd());
+			System.out.println("sql5");
 			statement.setInt(5, num);
+			System.out.println("sql6");
 			
 			rSet = statement.executeQuery();
+			System.out.println("sqlcorrect");
 			
 			list = postFilter(rSet, school);
 		}catch (Exception e) {
