@@ -60,18 +60,14 @@ public class TestDao extends Dao {
 		List<Test> list = new ArrayList<>();
 		try {
 			while (rSet.next()) {
-				Test test = new Test();
-				
 				Student student = new Student();
-				student.setNo(rSet.getString("student_no"));
+				student.setNo(rSet.getString("no"));
+				student.setName(rSet.getString("name"));
+				student.setEntYear(rSet.getInt("ent_year"));
+				student.setClassNum(rSet.getString("class_num"));
 				
-				Subject subject = new Subject();
-				subject.setCd(rSet.getString("subject_cd"));
-				
+				Test test = new Test();
 				test.setStudent(student);
-				test.setSubject(subject);
-				test.setSchool(school);
-				test.setNo(rSet.getInt("no"));
 				test.setPoint(rSet.getInt("point"));
 				
 				list.add(test);
