@@ -34,10 +34,10 @@
 						<div class="text-center mt-1 mb-3">${error}</div>
 					</c:if>
 					<label id="login-id" class="mx-3 mb-3 border rounded-2" style="color: gray;"> 
-						ＩＤ<br><input type="text" name="id" value="${id}" for="login-id" class="border-0" style="outline: none;" placeholder="半角でご入力ください" maxlength="10"size="40">
+						ＩＤ<br><input type="text" name="id" value="${id}" for="login-id" class="border-0" style="outline: none;" placeholder="半角でご入力ください" maxlength="10"size="40"required>
 					</label>
 					<label id="login-password" class="mb-3 mx-3 border rounded-2" style="color: gray;">
-						パスワード<br><input type="password" name="password" id="password" class="border-0" style="outline: none;"placeholder="30文字以内の半角英数字でご入力ください" maxlength="30"size="40">
+						パスワード<br><input type="password" name="password" id="password" class="border-0" style="outline: none;"placeholder="30文字以内の半角英数字でご入力ください" maxlength="30"size="40"required>
 					</label>
 					<div class="d-flex justify-content-center align-items-center">
 						<label id="password-view">
