@@ -33,7 +33,7 @@ public class TestRegistAction extends Action{
 		int num = 0;
 		
 		List<Test> tests = null;
-
+		
 		SubjectDao sDao = new SubjectDao();
 		TestDao tDao = new TestDao();
 		Map<String, String> errors = new HashMap<>();
@@ -79,7 +79,10 @@ public class TestRegistAction extends Action{
 		// 回数
 		List<Integer> test_count = new ArrayList<>();
 		test_count.add(1);test_count.add(2);
-		
+		if (subjectCd != null) {
+			Subject sub = sDao.get(subjectCd, teacher.getSchool());
+			req.setAttribute("sub", sub);
+		}
 		req.setAttribute("f1", entYear);
 		req.setAttribute("f2", classNum);
 		req.setAttribute("f3", subjectCd);

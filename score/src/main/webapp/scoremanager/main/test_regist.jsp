@@ -76,9 +76,9 @@
                 </h4>
 
                 <form action="TestRegistExecute.action" method="post">
-                <input type="hidden" name="subject_cd" value="${subject_cd}">
-				<input type="hidden" name="class_num" value="${class_num}">
-				<input type="hidden" name="no" value="${no}">
+                <input type="hidden" name="subject_cd" value="${f3}">
+				<input type="hidden" name="class_num" value="${f2}">
+				<input type="hidden" name="no" value="${f4}">
                     <table class="table table-hover mx-3">
                         <tr>
                             <th>入学年度</th>
@@ -95,12 +95,8 @@
                                 <td>${t.student.no}</td>
                                 <td>${t.student.name}</td>
                                 <td>
-                                	<input type="hidden" name="student_no" values="${t.student.no }">
-                                    <input type="number"
-                                           name="point"
-                                           class="form-control"
-                                           value="${t.point}"
-                                           min="0" max="100" required>
+                                	<input type="hidden" name="student_no" value="${t.student.no}">
+                                    <input type="number" name="point" class="form-control" value="${t.point}" min="0" max="100" required>
                                 </td>
                             </tr>
                         </c:forEach>

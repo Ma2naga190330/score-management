@@ -61,7 +61,7 @@ public class TestDao extends Dao {
 		try {
 			while (rSet.next()) {
 				Student student = new Student();
-				student.setNo(rSet.getString("no"));
+				student.setNo(rSet.getString("student.no"));
 				student.setName(rSet.getString("name"));
 				student.setEntYear(rSet.getInt("ent_year"));
 				student.setClassNum(rSet.getString("class_num"));
@@ -120,23 +120,16 @@ public class TestDao extends Dao {
 	}
 	
 	public boolean save(List<Test> list) throws Exception {
-		Connection connection = getConnection();
+		boolean flag = false;
 		try {
 			for (Test test : list) {
-				save(test, connection);
+				Connection connection = getConnection();
+				flag = save(test, connection);
 			}
 		}catch (Exception e) {
 			throw e;
-		}finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				}catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
 		}
-		return true;
+		return flag;
 	}
 	
 	private boolean save(Test test, Connection connection) throws Exception {
@@ -144,29 +137,35 @@ public class TestDao extends Dao {
 		int count = 0;
 		try {
 			Test old = get(test.getStudent(), test.getSubject(), test.getSchool(), test.getNo());
-			
+			System.out.println("old OK"+old);
 			if (old == null) {
-				statement = connection.prepareStatement("insert into test(student_no, subject_cd, school_cd, no, point)");
+				statement = connection.prepareStatement("insert into test(student_no, subject_cd, school_cd, no, point) values(?,?,?,?,?);");
 				statement.setString(1, test.getStudent().getNo());
 				statement.setString(2, test.getSubject().getCd());
 				statement.setString(3, test.getSchool().getCd());
 				statement.setInt(4, test.getNo());
 				statement.setInt(5, test.getPoint());
 			}else {
-				statement = connection.prepareStatement("update test set point = ?" + "where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
+				System.out.println("update");
+				System.out.println("point"+test.getPoint()+" student_no"+test.getStudent().getNo()+" subject_cd"+test.getSubject().getCd()+" school_cd"+test.getSchool().getCd()+" no"+test.getNo());
+				statement = connection.prepareStatement("update test set point = ? where student_no = ? and subject_cd = ? and school_cd = ? and no = ?;");
+				System.out.println("getPoint");
 				statement.setInt(1, test.getPoint());
 				statement.setString(2, test.getStudent().getNo());
 				statement.setString(3, test.getSubject().getCd());
 				statement.setString(4, test.getSchool().getCd());
 				statement.setInt(5, test.getNo());
 			}
+			System.out.println("SQL実行");
 			count = statement.executeUpdate();
+			System.out.println("count"+count+"SQL実行OK");
 		}catch (Exception e) {
 			throw e;
 		}finally {
 			if (statement != null) {
 				try {
 					statement.close();
+					System.out.println("statement_close");
 				}catch (SQLException sqle) {
 					throw sqle;
 				}
@@ -174,6 +173,7 @@ public class TestDao extends Dao {
 			if (connection != null) {
 				try {
 					connection.close();
+					System.out.println("connection_close");
 				}catch (SQLException sqle) {
 					throw sqle;
 				}
