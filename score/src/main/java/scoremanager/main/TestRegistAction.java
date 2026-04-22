@@ -1,19 +1,17 @@
 package scoremanager.main;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import bean.School;
+import bean.Subject;
 import bean.Teacher;
 import bean.Test;
 import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestDao;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -21,77 +19,85 @@ import tool.Action;
 
 public class TestRegistAction extends Action{
 	@Override
-	public void execute(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException{
+	public void execute(HttpServletRequest req,HttpServletResponse res)throws Exception{
+		// セッションの取得
+		System.out.println("loginAction>OK");
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
-		School school = teacher.getSchool();
 		
-		String entYearInt = req.getParameter("f1");
-		String classNum = req.getParameter("f2");
-		String subjectCd = req.getParameter("f3");
-		String noInt = req.getParameter("f4");
-				
+		String entYearStr = "";
+		String classNum = "";
+		String subjectCd = "";
+		String numStr = "";
 		int entYear = 0;
 		int num = 0;
-		boolean isAttend = false;
-		List<Test> tests = null;
-		LocalDate tobaysDate = LocalDate.now();
-		int year = tobaysDate.getYear();
 		
-		Map<String, String> errors = new HashMap<>();
+		List<Test> tests = null;
 		
 		SubjectDao sDao = new SubjectDao();
-		ClassNumDao cDao = new ClassNumDao();
 		TestDao tDao = new TestDao();
+		Map<String, String> errors = new HashMap<>();
+		// データの取得
+		entYearStr = req.getParameter("f1");
+		classNum = req.getParameter("f2");
+		subjectCd = req.getParameter("f3");
+		numStr = req.getParameter("f4");
+		System.out.println("検索"+entYearStr+" "+classNum+" "+subjectCd+" "+numStr);
+		// 取得してきたデータが1つでもnullならばerror表示
 		
-		if (entYearInt != null) {
-			entYear = Integer.parseInt(entYearInt);
-			num = Integer.parseInt(noInt);
+		if (entYearStr != null && !entYearStr.equals("0")) {
+			entYear = Integer.parseInt(entYearStr);
 		}
+		
+		if (numStr != null && !numStr.equals("0")) {
+			num = Integer.parseInt(numStr);
+		}
+		
+		if (entYearStr != null || classNum != null || subjectCd != null || numStr != null) {
+			if (entYear == 0 || classNum.equals("0") || subjectCd == null || subjectCd.equals("0") || num == 0) {
+				errors.put("filter", "入学年度とクラスと科目と回数を選択してください");
+			}else {
+				Subject subject = sDao.get(subjectCd, teacher.getSchool());
+				
+				tests = tDao.filter(entYear, classNum, subject, num, teacher.getSchool());
+			}
+		}
+		
+		// クラス
+		ClassNumDao cNumDao = new ClassNumDao();
+		List<String> class_num = cNumDao.filter(teacher.getSchool());
+		
+		// 年度
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
 		List<Integer> entYearSet = new ArrayList<>();
-		for (int i = year - 10; i <= year; i++) {
+		for (int i = year - 10; i < year + 1; i++) {
 			entYearSet.add(i);
 		}
-		
-		List<String> classNumSet = cDao.filter(teacher.getSchool());
-		List<Subject> subjectSet = sDao.filter(teacher.getSchool());
-		
-		try {;
-		// 入学年度とクラス番号を指定
-		if (entYearInt != null && !entYearInt.equals("0")) {
-			tests = tDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
-		// 入学年度のみ
-		} else if (classNum != null && !classNum.equals("0")) {
-			tests = tDao.filter(teacher.getSchool(), entYear, isAttend);
-		// 科目のみ
-		} else if (subjectCd == null && !subjectCd.equals("0")) {
-			tests = tDao.filter(entYear, classNum, null, year, school);
-		// 回数のみ
-		} else if (noInt == null && !noInt.equals("0")) {
-			tests = tDao.filter(year, noInt, null, year, school);
-		// エラー
-		} else {
-			errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
-			req.setAttribute("errors", errors);
+		// 科目リスト
+		List<Subject> subject_list = sDao.filter(teacher.getSchool());
+		// 回数
+		List<Integer> test_count = new ArrayList<>();
+		test_count.add(1);test_count.add(2);
+		if (subjectCd != null) {
+			Subject sub = sDao.get(subjectCd, teacher.getSchool());
+			req.setAttribute("sub", sub);
 		}
-		
-		req.setAttribute("ent_year_set", entYearSet);
-		
-		req.setAttribute("class_num_set", classNumSet);
-		
-		req.setAttribute("subject_list", sDao);
-		
-		req.setAttribute("f1", entYearInt);
-		
+		req.setAttribute("f1", entYear);
 		req.setAttribute("f2", classNum);
+		req.setAttribute("f3", subjectCd);
+		req.setAttribute("f4", num);
 		
-		req.setAttribute("f3", subjectSet);
+		// プルダウン検索データ
+		req.setAttribute("ent_year_set", entYearSet);
+		req.setAttribute("subject_list", subject_list);
+		req.setAttribute("test_count", test_count);
+		req.setAttribute("class_num_set", class_num);
 		
-		req.setAttribute("f4", noInt);
+		req.setAttribute("tests", tests);
+		req.setAttribute("errors", errors);
 		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// フォワード
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
 }
