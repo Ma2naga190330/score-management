@@ -19,7 +19,7 @@
 				<div>
 					<div class="">成績管理</div>
 					<div class="">
-						<a href="TestList.action">成績登録</a>
+						<a href="/score/scoremanager/main/TestRegist.action">成績登録</a>
 					</div>
 					<div class="">
 						<a href="TestList.action">成績参照</a>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 					Style="height: 10rem; background-color: #ddb;">
-					<a href="ClassList.action">クラス管理</a>
+					<a href="/score/scoremanager/main/ClassList.action">クラス管理</a>
 			</div>
 			</div>
 		</section>	
