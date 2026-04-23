@@ -26,7 +26,7 @@ public class LoginExecuteAction extends Action{
 				session.setAttribute("user", user);
 				req.getRequestDispatcher("main/Menu.action").forward(req, res);
 			}else {
-				String error = "ログインに失敗しました。IDまたはパスワードが正しくありません";
+				String error = "IDまたはPasswordが間違っています";
 				req.setAttribute("error", error);
 				req.getRequestDispatcher("Login.action").forward(req, res);
 			}

@@ -16,75 +16,40 @@ public class SubjectDao extends Dao {
 	private String baseSql = "select * from subject where school_cd = ?";
 
 	public Subject get(String cd, School school) throws Exception {
-
 		Subject subject = new Subject();
-
 		Connection connection = getConnection();
-
 		PreparedStatement statement = null;
-
 		try {
-
 			statement = connection.prepareStatement("select * from subject where cd = ? and school_cd =?");
-
 			statement.setString(1, cd);
-
 			statement.setString(2, school.getCd());
-
 			ResultSet rSet = statement.executeQuery();
-
 			if (rSet.next()) {
-
 				subject.setCd(rSet.getString("cd"));
-
 				subject.setName(rSet.getString("name"));
-
 				subject.setSchool(school);
-
 			}else {
-
 				subject = null;
-
 			}
-
 		}catch (Exception e) {
-
 			throw e;
-
 		}finally {
-
 			if (statement != null) {
-
 				try {
-
 					statement.close();
-
 				}catch (SQLException sqle) {
-
 					throw sqle;
-
 				}
-
 			}
-
 			if (connection != null) {
-
 				try {
-
 					connection.close();
-
 				}catch (SQLException sqle) {
-
 					throw sqle;
-
 				}
-
 			}
-
 		}
-
 		return subject;
-
 	}
 
 	public List<Subject> filter(School school) throws Exception {
