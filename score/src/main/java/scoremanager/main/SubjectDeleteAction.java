@@ -13,7 +13,6 @@ public class SubjectDeleteAction extends Action{
 	public void execute(HttpServletRequest req, HttpServletResponse res)throws Exception{
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher) session.getAttribute("user");
-		
 		String subject_cd = req.getParameter("cd");
 		
 		SubjectDao sDao = new SubjectDao();

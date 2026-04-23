@@ -185,4 +185,43 @@ public class TestDao extends Dao {
 			return false;
 		}
 	}
+	
+	public boolean delete(Test test) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		String student_no = test.getStudent().getNo();
+		String subject_cd = test.getSubject().getCd();
+		String school_cd = test.getSchool().getCd();
+		int no = test.getNo();
+		try {
+			statement = connection.prepareStatement("delete from test where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
+			statement.setString(1, student_no);
+			statement.setString(2, subject_cd);
+			statement.setString(3, school_cd);
+			statement.setInt(4, no);
+			int num = statement.executeUpdate();
+			if (num > 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}catch (Exception e) {
+			throw e;
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				}catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				}catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+	}
 }
