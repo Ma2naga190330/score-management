@@ -20,13 +20,10 @@ public class TestListStudentExecuteAction extends Action{
 		School school = teacher.getSchool();
 		
 		String studentNo = req.getParameter("f4");
-		
 		StudentDao sDao = new StudentDao();
 		Student student = sDao.get(studentNo);
-		
 		TestListStudentDao tlsDao = new TestListStudentDao();
 		List<TestListStudent> list = tlsDao.filter(student);
-		
 		req.setAttribute("student", student);
 		req.setAttribute("test_student", list);
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);

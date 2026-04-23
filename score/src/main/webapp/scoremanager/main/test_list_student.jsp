@@ -10,35 +10,28 @@
                 <div class="alert alert-info mx-3">${message}</div>
             </c:if>
 
-            <c:if test="${empty studentResults}">
+            <c:if test="${empty test_student}">
                 <p class="mx-3">該当する学生情報はありません。</p>
             </c:if>
 
-            <c:if test="${not empty studentResults}">
+            <c:if test="${not empty test_student}">
                 <div class="table-responsive mx-3">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>学生番号</th>
-                                <th>氏名</th>
-                                <th>入学年度</th>
-                                <th>クラス</th>
-                                <th>在籍</th>
+                                <th>科目名</th>
+                                <th>科目コード</th>
+                                <th>回数</th>
+                                <th>点数</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="s" items="${studentResults}">
+                            <c:forEach var="s" items="${test_student}">
                                 <tr>
-                                    <td>${s.no}</td>
-                                    <td>${s.name}</td>
-                                    <td>${s.entYear}</td>
-                                    <td>${s.classNum}</td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${s.isAttend}">在籍</c:when>
-                                            <c:otherwise>退学</c:otherwise>
-                                        </c:choose>
-                                    </td>
+                                    <td>${s.subjectName}</td>
+                                    <td>${s.subjectCd}</td>
+                                    <td>${s.num}</td>
+                                    <td>${s.point}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

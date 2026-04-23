@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.School;
 import bean.Student;
+import bean.Subject;
 import bean.TestListStudent;
 
 public class TestListStudentDao extends Dao {
@@ -18,8 +20,12 @@ public class TestListStudentDao extends Dao {
 		try {
 			while (rSet.next()) {
 				TestListStudent tls = new TestListStudent();
-				tls.setSubjectName(rSet.getString("subject_name"));
-				tls.setSubjectCd(rSet.getString("subject_cd"));
+				School school = new School();
+				school.setCd(rSet.getString("school_cd"));
+				SubjectDao sDao = new SubjectDao();
+				Subject sub = sDao.get(rSet.getString("subject_cd"),school);
+				tls.setSubjectName(sub.getName());
+				tls.setSubjectCd(sub.getCd());
 				tls.setNum(rSet.getInt("no"));
 				tls.setPoint(rSet.getInt("point"));
 				list.add(tls);
@@ -34,10 +40,10 @@ public class TestListStudentDao extends Dao {
 		List<TestListStudent> list = new ArrayList<>();
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
-		String sqle = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ?";
+		String sqle = "select * from test where student_no = ? and school_cd = ?";
 		
 		try {
-			statement = connection.prepareStatement(baseSql + sqle);
+			statement = connection.prepareStatement(sqle);
 			statement.setString(1, student.getNo());
 			statement.setString(2, student.getSchool().getCd());
 			ResultSet rSet = statement.executeQuery();

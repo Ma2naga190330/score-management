@@ -22,11 +22,7 @@
 						<a href="/score/scoremanager/main/TestRegist.action">成績登録</a>
 					</div>
 					<div class="">
-<<<<<<< HEAD
 						<a href="/score/scoremanager/main/TestList.action">成績参照</a>
-=======
-						<a href="TestList.action">成績参照</a>
->>>>>>> refs/remotes/origin/test_manager2
 					</div>
 				</div>
 			</div>
