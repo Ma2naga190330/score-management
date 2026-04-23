@@ -19,7 +19,7 @@
 
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
-                        <select name="ent_year" class="form-select">
+                        <select name="f1" class="form-select">
                             <option value="">------------</option>
                             <c:forEach var="y" items="${entYearList}">
                                 <option value="${y}">${y}</option>
@@ -29,7 +29,7 @@
 
                     <div class="col-3">
                         <label class="form-label">クラス</label>
-                        <select name="class_num" class="form-select">
+                        <select name="f2" class="form-select">
 						    <option value="">------------</option>
 						    <c:forEach var="c" items="${classList}">
 						        <option value="${c}">${c}</option>
@@ -39,7 +39,7 @@
 
                     <div class="col-3">
                         <label class="form-label">科目</label>
-                        <select name="subject" class="form-select">
+                        <select name="f3" class="form-select">
                             <option value="">------------</option>
                             <c:forEach var="s" items="${subjectList}">
                                 <option value="${s.name}">${s.name}</option>
@@ -61,7 +61,7 @@
 
                     <div class="col-4">
                         <label class="form-label">学生番号</label>
-                        <input type="text" name="student_no" class="form-control"
+                        <input type="text" name="f4" class="form-control"
                                placeholder="学生番号を入力してください">
                     </div>
 

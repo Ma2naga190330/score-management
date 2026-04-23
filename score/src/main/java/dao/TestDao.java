@@ -120,6 +120,7 @@ public class TestDao extends Dao {
 	}
 	
 	public boolean save(List<Test> list) throws Exception {
+		System.out.println("TestDao.save(List<Test>)");
 		boolean flag = false;
 		try {
 			for (Test test : list) {
@@ -133,6 +134,7 @@ public class TestDao extends Dao {
 	}
 	
 	private boolean save(Test test, Connection connection) throws Exception {
+		System.out.println("TestDao.save(Test)"+test.getStudent().getNo());
 		PreparedStatement statement = null;
 		int count = 0;
 		try {

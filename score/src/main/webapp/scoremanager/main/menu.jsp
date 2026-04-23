@@ -22,7 +22,7 @@
 						<a href="/score/scoremanager/main/TestRegist.action">成績登録</a>
 					</div>
 					<div class="">
-						<a href="/score/scoremanager/main/TestListExecute.action">成績参照</a>S
+						<a href="/score/scoremanager/main/TestList.action">成績参照</a>
 					</div>
 				</div>
 			</div>

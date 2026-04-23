@@ -87,7 +87,6 @@
                             <th>氏名</th>
                             <th>点数</th>
                         </tr>
-
                         <c:forEach var="t" items="${tests}">
                             <tr>
                                 <td>${t.student.entYear}</td>
@@ -96,7 +95,8 @@
                                 <td>${t.student.name}</td>
                                 <td>
                                 	<input type="hidden" name="student_no" value="${t.student.no}">
-                                    <input type="number" name="point" class="form-control" value="${t.point}" min="0" max="100" required>
+                                    <input type="number" name="point" class="form-control" value="${t.point}" required>
+                                    <c:if test="${ not empty pointError }">${ pointError.get(t.student.no) }</c:if>
                                 </td>
                             </tr>
                         </c:forEach>
