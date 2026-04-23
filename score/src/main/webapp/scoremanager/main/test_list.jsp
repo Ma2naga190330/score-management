@@ -14,7 +14,7 @@
 
             <h4 class="mt-4">科目情報</h4>
 
-            <form action="TestListSubjectExecute.action" method="post">
+            <form action="TestList.action" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
 
                     <div class="col-3">
@@ -56,7 +56,7 @@
 
             <h4 class="mt-4">学生情報</h4>
 
-            <form action="TestListStudentExecute.action" method="post">
+            <form action="TestList.action" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
 
                     <div class="col-4">

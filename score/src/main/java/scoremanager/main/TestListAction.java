@@ -20,6 +20,10 @@ public class TestListAction extends Action {
 
         try {
             School school = (School) req.getSession().getAttribute("school");
+            if (school == null) {
+                req.getRequestDispatcher("Login.action").forward(req, res);
+                return;
+            }
 
             List<Integer> entYearList = List.of(2020, 2021, 2022, 2023, 2024, 2025);
 
