@@ -120,7 +120,10 @@ public class TestDao extends Dao {
 	}
 	
 	public boolean save(List<Test> list) throws Exception {
+<<<<<<< HEAD
 		System.out.println("TestDao.save(List<Test>)");
+=======
+>>>>>>> refs/remotes/origin/test_manager2
 		boolean flag = false;
 		try {
 			for (Test test : list) {

@@ -95,8 +95,12 @@
                                 <td>${t.student.name}</td>
                                 <td>
                                 	<input type="hidden" name="student_no" value="${t.student.no}">
+<<<<<<< HEAD
                                     <input type="number" name="point" class="form-control" value="${t.point}" required>
                                     <c:if test="${ not empty pointError }">${ pointError.get(t.student.no) }</c:if>
+=======
+                                    <input type="number" name="point" class="form-control" value="${t.point}" min="0" max="100" required>
+>>>>>>> refs/remotes/origin/test_manager2
                                 </td>
                             </tr>
                         </c:forEach>
