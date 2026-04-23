@@ -38,7 +38,7 @@
                         <select name="f3" class="form-select">
                             <option value="">------------</option>
                             <c:forEach var="s" items="${subjectList}">
-                                <option value="${s.name}">${s.name}</option>
+                                <option value="${s.cd}">${s.name}</option>
                             </c:forEach>
                         </select>
                     </div>

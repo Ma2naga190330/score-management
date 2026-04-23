@@ -26,11 +26,12 @@ public class TestListSubjectExecuteAction extends Action{
 		
 		SubjectDao sDao = new SubjectDao();
 		Subject subject = sDao.get(subjectCd, school);
-		
 		TestListSubjectDao tsbDao = new TestListSubjectDao();
+		System.out.println("filter>>"+entYear+" "+classNum+" "+subject+" "+school);
 		List<TestListSubject> list = tsbDao.filter(entYear, classNum, subject, school);
+		System.out.println("list>>"+list.size());
 		req.setAttribute("subject", subject);
-		req.setAttribute("tests", list);
+		req.setAttribute("subjectResults", list);
 		req.getRequestDispatcher("test_list_subject.jsp").forward(req, res);
 	}
 }

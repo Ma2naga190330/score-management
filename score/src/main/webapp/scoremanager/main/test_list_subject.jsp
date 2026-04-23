@@ -19,21 +19,33 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>入学年度</th>
+                                <th>クラス</th>
                                 <th>学生番号</th>
                                 <th>氏名</th>
-                                <th>テスト名</th>
-                                <th>点数</th>
-                                <th>科目名</th>
+                                <th>1回</th>
+                                <th>2回</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="r" items="${subjectResults}">
                                 <tr>
+                                    <td>${r.entYear}</td>
+                                    <td>${r.classNum}</td>
                                     <td>${r.studentNo}</td>
                                     <td>${r.studentName}</td>
-                                    <td>${r.testName}</td>
-                                    <td>${r.score}</td>
-                                    <td>${r.name}</td>
+                                    <td>
+                                    	<c:choose>
+                                    		<c:when test="${not empty r.points.get(1)}">${ r.points.get(1) }</c:when>
+                                    		<c:otherwise>-</c:otherwise>
+                                    	</c:choose>
+                                    </td>
+                                    <td>
+                                    	<c:choose>
+                                    		<c:when test="${not empty r.points.get(2)}">${ r.points.get(2) }</c:when>
+                                    		<c:otherwise>-</c:otherwise>
+                                    	</c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

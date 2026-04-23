@@ -26,10 +26,11 @@ public class TestListSubjectDao extends Dao{
 				if(tls == null) {
 					tls = new TestListSubject();
 					tls.setEntYear(rSet.getInt("ent_year"));
-					tls.setStudentNo(no);
+					tls.setStudentNo(rSet.getString("student_no"));
 					tls.setStudentName(rSet.getString("name"));
 					tls.setClassNum(rSet.getString("class_num"));
-					map.put(no, tls);
+//					map.put(no, rSet.getInt("point"));
+					list.add(tls);
 				}
 			}
 		} catch (SQLException e) {
@@ -42,15 +43,14 @@ public class TestListSubjectDao extends Dao{
 		List<TestListSubject> list = new ArrayList<>();
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
-		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ?";
+		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ?";
 		
 		try {
-			statement = connection.prepareStatement(baseSql + sql);
-			statement.setString(1, subject.getCd());
-			statement.setString(2, school.getCd());
-			statement.setInt(3, entYear);
-			statement.setString(4, classNum);
-			statement.setString(5, school.getCd());
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, school.getCd());
+			statement.setInt(2, entYear);
+			statement.setString(3, classNum);
+			statement.setString(4, subject.getCd());
 			ResultSet rSet = statement.executeQuery();
 			list = postFilter(rSet);
 		} catch (Exception e) {
