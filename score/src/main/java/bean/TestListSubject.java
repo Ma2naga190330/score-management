@@ -9,7 +9,6 @@ public class TestListSubject implements Serializable{
 	private String studentNo;
 	private String studentName;
 	private String classNum;
-	private String point;
 	private Map<Integer, Integer> points = new HashMap<>();
 	
 	public int getEntYear() {
@@ -53,7 +52,11 @@ public class TestListSubject implements Serializable{
 	}
 	
 	public String getPoint(int key) {
-		return point;
+		String result=null;
+		if (points.get(key) != null) {
+			result = Integer.toString(points.get(key));
+		}
+		return result;
 	}
 	
 	public void putPoint(int key, int value) {

@@ -36,13 +36,13 @@
                                     <td>${r.studentName}</td>
                                     <td>
                                     	<c:choose>
-                                    		<c:when test="${not empty r.points.get(1)}">${ r.points.get(1) }</c:when>
+                                    		<c:when test="${not empty r.getPoint(1)}">${ r.getPoint(1) }</c:when>
                                     		<c:otherwise>-</c:otherwise>
                                     	</c:choose>
                                     </td>
                                     <td>
                                     	<c:choose>
-                                    		<c:when test="${not empty r.points.get(2)}">${ r.points.get(2) }</c:when>
+                                    		<c:when test="${r.getPoint(2) != null}">${ r.getPoint(2) }</c:when>
                                     		<c:otherwise>-</c:otherwise>
                                     	</c:choose>
                                     </td>

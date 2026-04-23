@@ -17,26 +17,41 @@ public class TestListSubjectDao extends Dao{
 	private String baseSql = "select * from subject where school_cd = ?";
 	
 	private List<TestListSubject> postFilter(ResultSet rSet)throws Exception{
-		List<TestListSubject> list = new ArrayList<>();
+		List<String> list = new ArrayList<>();
 		Map<String, TestListSubject> map = new HashMap<>();
+		List<TestListSubject> slist = new ArrayList<>();
 		try {
 			while (rSet.next()) {
-				String no = rSet.getString("no");
-				TestListSubject tls = map.get(no);
-				if(tls == null) {
+				String studentNo = rSet.getString("student_no");
+				TestListSubject tls = map.get(studentNo);
+				if (tls == null) {
 					tls = new TestListSubject();
 					tls.setEntYear(rSet.getInt("ent_year"));
-					tls.setStudentNo(rSet.getString("student_no"));
+					tls.setStudentNo(studentNo);
 					tls.setStudentName(rSet.getString("name"));
 					tls.setClassNum(rSet.getString("class_num"));
-//					map.put(no, rSet.getInt("point"));
-					list.add(tls);
+					int no = Integer.parseInt(rSet.getString("no"));
+					int point = rSet.getInt("point");
+					tls.putPoint(no,point);
+					System.out.println("key>"+studentNo+"no>"+no+" point>"+point);
+					map.put(studentNo, tls);
+					list.add(studentNo);
+				}else if (tls != null) {
+					int no = Integer.parseInt(rSet.getString("no"));
+					int point = rSet.getInt("point");
+					System.out.println("key>"+studentNo+"no>"+no+" point>"+point);
+					tls.putPoint(no,point);
+					map.remove(studentNo);
+					map.put(studentNo, tls);
 				}
+			}
+			for (String t:list) {
+				slist.add(map.get(t));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return slist;
 	}
 	
 	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school)throws Exception{

@@ -29,6 +29,14 @@ public class TestListSubjectExecuteAction extends Action{
 		TestListSubjectDao tsbDao = new TestListSubjectDao();
 		System.out.println("filter>>"+entYear+" "+classNum+" "+subject+" "+school);
 		List<TestListSubject> list = tsbDao.filter(entYear, classNum, subject, school);
+		for (TestListSubject tls : list) {
+			if (tls.getPoint(1) != null) {
+				System.out.println("1回目"+tls.getPoint(1));
+			}
+			if (tls.getPoint(2) != null) {
+				System.out.println("2回目"+tls.getPoint(2));
+			}
+		}
 		System.out.println("list>>"+list.size());
 		req.setAttribute("subject", subject);
 		req.setAttribute("subjectResults", list);
