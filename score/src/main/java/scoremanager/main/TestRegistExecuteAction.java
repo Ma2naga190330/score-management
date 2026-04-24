@@ -10,6 +10,7 @@ import bean.Subject;
 import bean.Teacher;
 import bean.Test;
 import dao.StudentDao;
+import dao.SubjectDao;
 import dao.TestDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,9 +35,12 @@ public class TestRegistExecuteAction extends Action {
 			System.out.println("studentNo+point+in");
 			String[] studentNo = request.getParameterValues("student_no");
 			String[] point = request.getParameterValues("point");
-			Subject subject = new Subject();
-			subject.setCd(subjectCd);
-			subject.setSchool(school);
+			SubjectDao subDao = new SubjectDao();
+			Subject subject = subDao.get(subjectCd, school);
+			if (subjectCd != null) {
+				System.out.println("subjectCd>>"+subjectCd);
+				request.setAttribute("sub", subject);
+			}
 			
 			boolean flag = false;
 			HashMap<String,String> pointError = new HashMap<String,String>();
@@ -44,8 +48,8 @@ public class TestRegistExecuteAction extends Action {
 			for (int i = 0; i < studentNo.length; i++) {
 				Test test = new Test();
 				
-				StudentDao sDao = new StudentDao();
-				Student student = sDao.get(studentNo[i]);
+				StudentDao stuDao = new StudentDao();
+				Student student = stuDao.get(studentNo[i]);
 				System.out.println("TestRegistExecute_student_no"+studentNo[i]);
 				
 				test.setStudent(student);
