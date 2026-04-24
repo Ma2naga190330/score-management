@@ -20,6 +20,10 @@ public class TestDeleteAction extends Action {
 		String subjectCd = request.getParameter("subject_cd");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
+		System.out.println(studetNo);
+		System.out.println(subjectCd);
+		System.out.println(no);
+		
 		Student student = new Student();
 		student.setNo(studetNo);
 		
