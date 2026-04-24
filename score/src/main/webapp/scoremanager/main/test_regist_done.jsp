@@ -20,6 +20,7 @@
 		</div>
 		
 		<div class="d-flex align-itmes-center gap-5 mt-2">
+			<a href="TestRegist.action">戻る</a>
 			<a href="Menu.action">成績参照</a>
 		</div>
 		</section>
