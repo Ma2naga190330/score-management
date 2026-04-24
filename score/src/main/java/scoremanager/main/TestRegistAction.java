@@ -93,11 +93,13 @@ public class TestRegistAction extends Action{
 		req.setAttribute("subject_list", subject_list);
 		req.setAttribute("test_count", test_count);
 		req.setAttribute("class_num_set", class_num);
-		
+		if (tests != null) {
+			System.out.println(tests.size());
+		}
 		req.setAttribute("tests", tests);
 		req.setAttribute("errors", errors);
 		
 		// フォワード
-		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
+		req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
 	}
 }

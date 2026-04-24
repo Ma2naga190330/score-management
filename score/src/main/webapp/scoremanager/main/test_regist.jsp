@@ -113,6 +113,9 @@
                     </div>
                 </form>
             </c:if>
+            <c:if test="${tests == null || tests.size() == 0}">
+            	<p>データがありません</p>
+            </c:if>
 
         </section>
     </c:param>
