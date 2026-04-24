@@ -100,6 +100,6 @@ public class TestRegistAction extends Action{
 		req.setAttribute("errors", errors);
 		
 		// フォワード
-		req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
+		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
 }
