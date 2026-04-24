@@ -40,7 +40,7 @@ public class TestListStudentDao extends Dao {
 		List<TestListStudent> list = new ArrayList<>();
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
-		String sqle = "select * from test where student_no = ? and school_cd = ?";
+		String sqle = "select * from test where student_no = ? and school_cd = ? and test_flag = true";
 		
 		try {
 			statement = connection.prepareStatement(sqle);

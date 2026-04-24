@@ -16,7 +16,7 @@ public class TestDeleteExecuteAction extends Action {
 		HttpSession session = request.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		
-		String studentNo = request.getParameter("tudent_no");
+		String studentNo = request.getParameter("student_no");
 		String subjectCd = request.getParameter("subject_cd");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
@@ -33,11 +33,18 @@ public class TestDeleteExecuteAction extends Action {
 		test.setNo(no);
 		
 		TestDao tDao = new TestDao();
-		tDao.delete(test);
+		if (tDao.delete(test)) {
+			request.setAttribute("student_no", studentNo);
+			request.setAttribute("subject_cd", subjectCd);
+			request.setAttribute("no", no);
+			request.getRequestDispatcher("test_delete_done.jsp").forward(request, response);
+			return;
+		}else {
+			System.out.println("成績削除エラー");
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
+			return;
+		}
 		
-		request.setAttribute("student_no", studentNo);
-		request.setAttribute("subject_cd", subjectCd);
-		request.setAttribute("no", no);
-		request.getRequestDispatcher("test_delete_done.jsp").forward(request, response);
+		
 	}
 }

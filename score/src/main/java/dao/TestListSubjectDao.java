@@ -58,7 +58,7 @@ public class TestListSubjectDao extends Dao{
 		List<TestListSubject> list = new ArrayList<>();
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
-		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ?";
+		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test_flag = true";
 		
 		try {
 			statement = connection.prepareStatement(sql);
