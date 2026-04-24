@@ -18,7 +18,10 @@
 						<c:forEach var="year" items="${ent_year_set}">
 							<option value="${year}"<c:if test="${year==f1}">selected</c:if>>${year}</option>
 						</c:forEach>
-					</select><br>
+					</select>
+					<div class="pb-2">
+						<c:if test="${ not empty ent_error }">${ ent_error }</c:if>
+					</div>
 				<!-- 学生番号の入力 -->
 				<div class="mb-3">
                     <label class="form-label" for="student-num-input">学生番号</label>
@@ -41,6 +44,7 @@
 							<option value ="${num}">${num}</option>
 						</c:forEach>
 				</select>
+				<c:if test="${ not empty class_num_error }">${ class_num_error }</c:if>
 				<!-- 登録して終了するボタン -->
 				<div class="mt-3 mb-3">
 					<button class="btn btn-secondary p-2" id="filter-end-button" type="submit">登録して終了</button>

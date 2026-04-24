@@ -1,9 +1,13 @@
 package scoremanager.main;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDao;
 import dao.StudentDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,19 +26,45 @@ public class StudentCreateExecuteAction extends Action {
 			String class_num = request.getParameter("class_num");
 			HttpSession session = request.getSession();
 			Teacher teacher = (Teacher) session.getAttribute("user");
-			
-			
+			// エラーフラグ
+			boolean flag = false;
+			if (ent_year == 0) {
+				flag = true;
+				request.setAttribute("ent_error","入学年度を設定してください");
+			}
+			if (class_num.equals("0")) {
+				flag = true;
+				request.setAttribute("class_num_error", "クラスを設定してください");
+			}
+			if (flag) {
+				LocalDate todayDate = LocalDate.now();
+				int year = todayDate.getYear();
+				List<Integer>entYearSet = new ArrayList<>();
+				for (int i = year -10; i < year + 1; i++) {
+					entYearSet.add(i);
+				}
+				
+				Teacher user = (Teacher) session.getAttribute("user");
+				ClassNumDao dao = new ClassNumDao();
+				List<String> list = dao.filter(user.getSchool());
+				
+				request.setAttribute("class_num_set", list);
+				request.setAttribute("ent_year_set", entYearSet);
+				request.getRequestDispatcher("student_create.jsp").forward(request,response);
+				return;
+			}
 			Student stu = new Student();
 			stu.setEntYear(ent_year);
 			stu.setNo(no);
 			stu.setName(name);
 			stu.setClassNum(class_num);
 			stu.setSchool(teacher.getSchool());
+			stu.setIsAttend(true);
 			
 			StudentDao dao = new StudentDao();
-			boolean flag = dao.save(stu);
+			boolean daoFlag = dao.save(stu);
 			System.out.println("flag>>"+flag);
-			if (flag) {
+			if (daoFlag) {
 				request.getRequestDispatcher("student_create_done.jsp").forward(request,response);
 			}else {
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
