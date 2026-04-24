@@ -99,7 +99,7 @@
                                     <input type="number" name="point" class="form-control" value="${t.point}" required>
                                     <c:if test="${ not empty pointError }">${ pointError.get(t.student.no) }</c:if>
                                 </td>
-                                <td><a href="TestDelete.action?student_no=${t.student.no }&subject_cd=${sub.cd}&no=${t.no}">削除</a></td>
+                                <td><a href="TestDelete.action?student_no=${t.student.no }&subject_cd=${sub.cd}&no=${f4}">削除</a></td>
                             </tr>
                         </c:forEach>
                     </table>

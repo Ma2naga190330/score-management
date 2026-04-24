@@ -19,7 +19,7 @@ public class TestDao extends Dao {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			statement = connection.prepareStatement("select * from test where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
+			statement = connection.prepareStatement("select * from test where student_no = ? and subject_cd = ? and school_cd = ? and no = ? and test_flag = true");
 			statement.setString(1, student.getNo());
 			statement.setString(2, subject.getCd());
 			statement.setString(3, school.getCd());
@@ -85,7 +85,7 @@ public class TestDao extends Dao {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
-		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ?";
+		String sql = "select * from test join student on test.student_no = student.no where student.school_cd = ? and ent_year = ? and test.class_num = ? and subject_cd = ? and test.no = ? and test_flag = true";
 		
 		try {
 			statement = connection.prepareStatement(sql);
@@ -195,11 +195,12 @@ public class TestDao extends Dao {
 		String school_cd = test.getSchool().getCd();
 		int no = test.getNo();
 		try {
-			statement = connection.prepareStatement("delete from test where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
+			statement = connection.prepareStatement("update test set test_flag = false where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
 			statement.setString(1, student_no);
 			statement.setString(2, subject_cd);
 			statement.setString(3, school_cd);
 			statement.setInt(4, no);
+			System.out.println("student_no "+student_no+" subject_cd "+subject_cd+" school_cd "+school_cd+" no "+no);
 			int num = statement.executeUpdate();
 			if (num > 0) {
 				return true;
