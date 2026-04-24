@@ -49,7 +49,7 @@
             </form>
             <form action="TestListStudentExecute.action" method="post">
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label class="form-label">学生番号</label>
                         <input type="text" name="f4" class="form-control"
                                placeholder="学生番号を入力してください">

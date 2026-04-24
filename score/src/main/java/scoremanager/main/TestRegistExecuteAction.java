@@ -25,11 +25,12 @@ public class TestRegistExecuteAction extends Action {
 			Teacher teacher = (Teacher)session.getAttribute("user");
 			School school = teacher.getSchool();
 			System.out.println("sessionOK>>");
-			String entYearStr = request.getParameter("f1");
+			String entYearStr = request.getParameter("entYear");
 			int entYear = Integer.parseInt(entYearStr);
-			String subjectCd = request.getParameter("subject_cd");
-			String classNum = request.getParameter("class_num");
-			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println("f1>>OK");
+			String subjectCd = request.getParameter("subjectCd");
+			String classNum = request.getParameter("classNum");
+			int no = Integer.parseInt(request.getParameter("num"));
 			System.out.println("studentNo+point+in");
 			String[] studentNo = request.getParameterValues("student_no");
 			String[] point = request.getParameterValues("point");
@@ -57,7 +58,7 @@ public class TestRegistExecuteAction extends Action {
 					int p = Integer.parseInt(point[i]);
 					if (p < 0 || p > 100) {
 						flag = true;
-						pointError.put(studentNo[i],"エラー");
+						pointError.put(studentNo[i],"0～100の範囲で入力してください");
 						System.out.println(studentNo[i]+" "+pointError.get(studentNo[i]));
 					}
 					test.setPoint(p);
@@ -82,8 +83,10 @@ public class TestRegistExecuteAction extends Action {
 			System.out.println("登録OK");
 			request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
 		}catch (Exception e) {
-			request.setAttribute("error", "登録に失敗しました");
-			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+//			request.setAttribute("error", "登録に失敗しました");
+//			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+			e.printStackTrace();
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 	}
 }
