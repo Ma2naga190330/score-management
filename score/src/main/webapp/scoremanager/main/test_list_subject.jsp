@@ -38,7 +38,6 @@
                             </c:forEach>
                         </select>
                     </div>
-
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
