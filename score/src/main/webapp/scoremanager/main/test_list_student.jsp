@@ -4,7 +4,7 @@
     <c:param name="title">学生別成績一覧</c:param>
     <c:param name="content">
         <section class="me-4">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生別成績一覧</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績一覧(学生)</h2>
 			<form action="TestListSubjectExecute.action" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
 
@@ -47,7 +47,7 @@
                     <div class="col-3">
                         <label class="form-label">学生番号</label>
                         <input type="text" name="f4" class="form-control"
-                               placeholder="学生番号を入力してください">
+                               placeholder="学生番号を入力してください" <c:if test="${ not empty student }">value = "${ student.no }"</c:if>>
                     </div>
 
                     <div class="col-2 text-center">
@@ -62,11 +62,13 @@
             </c:if>
 
             <c:if test="${empty test_student}">
-                <p class="mx-3">該当する学生情報はありません。</p>
+                <div>氏名：${ student.name }(${ student.no })</div>
+                <div>成績情報が存在しませんでした</div>
             </c:if>
 
             <c:if test="${not empty test_student}">
                 <div class="table-responsive mx-3">
+                	<div>氏名：${ student.name }(${ student.no })</div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -90,10 +92,6 @@
                 </div>
             </c:if>
 
-            <div class="mx-3">
-                <a href="/score/scoremanager/main/TestList.action" class="btn btn-secondary">検索に戻る</a>
-
-            </div>
         </section>
     </c:param>
 </c:import>
