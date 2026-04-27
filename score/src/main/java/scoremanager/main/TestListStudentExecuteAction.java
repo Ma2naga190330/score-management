@@ -25,6 +25,7 @@ public class TestListStudentExecuteAction extends Action{
 		Student student = sDao.get(studentNo);
 		TestListStudentDao tlsDao = new TestListStudentDao();
 		List<TestListStudent> list = tlsDao.filter(student);
+		System.out.println("tlsDao.filter>>"+list.size());
 		req.setAttribute("student", student);
 		req.setAttribute("test_student", list);
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
