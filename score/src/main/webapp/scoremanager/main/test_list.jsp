@@ -9,14 +9,14 @@
 
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">
                 成績参照
-            </h2>
+            </h2>   	
             <form action="TestListSubjectExecute.action" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
 
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
                         <select name="f1" class="form-select">
-                            <option value="">------------</option>
+                            <option value="0">------------</option>
                             <c:forEach var="y" items="${entYearList}">
                                 <option value="${y}">${y}</option>
                             </c:forEach>
@@ -26,7 +26,7 @@
                     <div class="col-3">
                         <label class="form-label">クラス</label>
                         <select name="f2" class="form-select">
-						    <option value="">------------</option>
+						    <option value="0">------------</option>
 						    <c:forEach var="c" items="${classList}">
 						        <option value="${c}">${c}</option>
 						    </c:forEach>
@@ -36,16 +36,20 @@
                     <div class="col-3">
                         <label class="form-label">科目</label>
                         <select name="f3" class="form-select">
-                            <option value="">------------</option>
+                            <option value="0">------------</option>
                             <c:forEach var="s" items="${subjectList}">
                                 <option value="${s.cd}">${s.name}</option>
                             </c:forEach>
                         </select>
                     </div>
-
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
+                    <c:if test="${!empty error }">
+                    	<div>
+                    		${error }
+                    	</div>
+                    </c:if>
             </form>
             <form action="TestListStudentExecute.action" method="post">
 
@@ -65,7 +69,6 @@
 			<p class="text-primary mx-3">
 			    科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
 			</p>
-
 
         </section>
     </c:param>

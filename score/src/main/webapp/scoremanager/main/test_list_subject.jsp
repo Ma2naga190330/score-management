@@ -59,7 +59,7 @@
             <c:if test="${not empty message}">
                 <div class="alert alert-info mx-3">${message}</div>
             </c:if>
-
+            
             <c:if test="${empty subjectResults}">
                 <p class="mx-3">該当する成績データはありません。</p>
             </c:if>
