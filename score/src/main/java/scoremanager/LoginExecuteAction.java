@@ -29,6 +29,7 @@ public class LoginExecuteAction extends Action{
 				String error = "IDまたはPasswordが間違っています";
 				req.setAttribute("error", error);
 				req.getRequestDispatcher("Login.action").forward(req, res);
+				return;
 			}
 			req.getRequestDispatcher("/error.jsp").forward(req, res);
 		}catch (Exception e) {
