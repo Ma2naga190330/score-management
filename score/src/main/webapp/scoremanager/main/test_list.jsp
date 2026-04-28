@@ -11,8 +11,9 @@
                 成績参照
             </h2>   	
             <form action="TestListSubjectExecute.action" method="post">
-                <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
-
+                <div class="row border mx-4 py-1 align-items-center rounded">
+                	<div class="hstack gap-3">
+					<div>科目情報</div>
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
                         <select name="f1" class="form-select">
@@ -45,6 +46,7 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
+                    </div>
                     <c:if test="${!empty error }">
                     	<div>
                     		${error }
@@ -52,7 +54,8 @@
                     </c:if>
             </form>
             <form action="TestListStudentExecute.action" method="post">
-
+				<div class="hstack gap-3">
+					<div>学生情報</div>
                     <div class="col-3">
                         <label class="form-label">学生番号</label>
                         <input type="text" name="f4" class="form-control"
@@ -62,8 +65,8 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
-
-                </div>
+                    
+                 </div>
             </form>
 
 			<p class="text-primary mx-3">
