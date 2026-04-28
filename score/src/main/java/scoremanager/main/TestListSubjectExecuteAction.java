@@ -27,22 +27,30 @@ public class TestListSubjectExecuteAction extends Action{
 		String classNum = req.getParameter("f2");
 		String subjectCd = req.getParameter("f3");
 		
+		SubjectDao subDao = new SubjectDao();
+		Subject sub = subDao.get(subjectCd, school);
+		
+		req.setAttribute("f1", entYear);
+		req.setAttribute("f2", classNum);
+		req.setAttribute("f3", sub);
+		
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
+		List<Integer> entYearSet = new ArrayList<>();
+		for (int i = year - 10; i < year + 1; i++) {
+			entYearSet.add(i);
+		}
+        ClassNumDao classDao = new ClassNumDao();
+        List<String> classList = classDao.filter(school);
+
+        SubjectDao subjectDao = new SubjectDao();
+        List<Subject> subjectList = subjectDao.filter(school);
+
+        req.setAttribute("entYearList", entYearSet);
+        req.setAttribute("classList", classList);
+        req.setAttribute("subjectList", subjectList);
+		
 		if (entYear == 0 || classNum.equals("0") || subjectCd.equals("0")) {
-			LocalDate todaysDate = LocalDate.now();
-    		int year = todaysDate.getYear();
-    		List<Integer> entYearSet = new ArrayList<>();
-    		for (int i = year - 10; i < year + 1; i++) {
-    			entYearSet.add(i);
-    		}
-            ClassNumDao classDao = new ClassNumDao();
-            List<String> classList = classDao.filter(school);
-
-            SubjectDao subjectDao = new SubjectDao();
-            List<Subject> subjectList = subjectDao.filter(school);
-
-            req.setAttribute("entYearList", entYearSet);
-            req.setAttribute("classList", classList);
-            req.setAttribute("subjectList", subjectList);
 			req.setAttribute("error", "入学年度とクラスと科目を選択してください");
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
 			return;

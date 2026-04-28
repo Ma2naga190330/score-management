@@ -12,7 +12,7 @@
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
                         <select name="f1" class="form-select">
-                            <option value="">------------</option>
+                            <option value=""></option>
                             <c:forEach var="y" items="${entYearList}">
                                 <option value="${y}">${y}</option>
                             </c:forEach>
@@ -22,7 +22,7 @@
                     <div class="col-3">
                         <label class="form-label">クラス</label>
                         <select name="f2" class="form-select">
-						    <option value="">------------</option>
+						    <option selected>${ }</option>
 						    <c:forEach var="c" items="${classList}">
 						        <option value="${c}">${c}</option>
 						    </c:forEach>
@@ -32,7 +32,7 @@
                     <div class="col-3">
                         <label class="form-label">科目</label>
                         <select name="f3" class="form-select">
-                            <option value="">------------</option>
+                            <option selected>${f3.name }</option>
                             <c:forEach var="s" items="${subjectList}">
                                 <option value="${s.cd}">${s.name}</option>
                             </c:forEach>
@@ -67,6 +67,9 @@
 
             <c:if test="${not empty subjectResults}">
                 <div class="table-responsive mx-3">
+                	<div>
+                		科目:${f3.name}
+                	</div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
