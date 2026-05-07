@@ -21,6 +21,7 @@
 						id="subject-cd-input" placeholder="科目コードを入力してください"
 						maxlength="3" minlength="3" required>
 				</div>
+				<div class="mt-2 text-warning">${error}</div>
 				
 				<div class="mb-3">
 					<label class="form-label" for="subject-name-input">科目名</label>
@@ -37,7 +38,7 @@
 					<a href="SubjectList.action">戻る</a>
 					
 				</div>
-				<div class="mt-2 text-warning">${error}</div>
+				
 			</form>
 			</section>
 	</c:param>

@@ -18,10 +18,12 @@ public class SubjectCreateExecuteAction extends Action{
 		
 		String cd = request.getParameter("cd");
 		String name = request.getParameter("name");
+		boolean flag = false;
 		
 		if (cd.length() != 3) {
 			request.setAttribute("error", "科目コードは3文字で入力してください");
 			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+			flag = true;
 		}
 		
 		SubjectDao dao = new SubjectDao();
@@ -31,15 +33,18 @@ public class SubjectCreateExecuteAction extends Action{
 		if (subject != null) {
 			request.setAttribute("error", "科目コードが重複しています");
 			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+			flag = true;
 		}
 		
-		subject = new Subject();
-		subject.setCd(cd);
-		subject.setName(name);
-		subject.setSchool(school);
-		
-		dao.save(subject);
-		
-		request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
+		if (flag == false) {
+			subject = new Subject();
+			subject.setCd(cd);
+			subject.setName(name);
+			subject.setSchool(school);
+			
+			dao.save(subject);
+			
+			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
+		}
 	}
 }
