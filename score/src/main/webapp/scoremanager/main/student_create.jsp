@@ -41,12 +41,14 @@
 							<option value ="${num}">${num}</option>
 						</c:forEach>
 				</select>
+				<div class="mt-2 text-warning">${errors}</div>
 				<!-- 登録して終了するボタン -->
 				<div class="mt-3 mb-3">
 					<button class="btn btn-secondary p-2" id="filter-end-button" type="submit">登録して終了</button>
 				</div>
 				<!-- 戻るボタン -->
 				<a href="StudentList.action">戻る</a>
+				
 			</form>
 		</section>
 	</c:param>

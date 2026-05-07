@@ -30,7 +30,7 @@ public class SubjectCreateExecuteAction extends Action{
 		
 		if (subject != null) {
 			request.setAttribute("error", "科目コードが重複しています");
-			request.getRequestDispatcher("subject_crate.jsp").forward(request, response);
+			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
 		}
 		
 		subject = new Subject();
