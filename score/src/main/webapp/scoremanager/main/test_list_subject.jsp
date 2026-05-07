@@ -22,7 +22,6 @@
                     <div class="col-3">
                         <label class="form-label">クラス</label>
                         <select name="f2" class="form-select">
-						    <option selected>${ }</option>
 						    <c:forEach var="c" items="${classList}">
 						        <option value="${c}">${c}</option>
 						    </c:forEach>
@@ -89,13 +88,13 @@
                                     <td>${r.studentName}</td>
                                     <td>
                                     	<c:choose>
-                                    		<c:when test="${not empty r.getPoint(1)}">${ r.getPoint(1) }</c:when>
+                                    		<c:when test="${ r.getPoint(1) != null }">${ r.getPoint(1) }</c:when>
                                     		<c:otherwise>-</c:otherwise>
                                     	</c:choose>
                                     </td>
                                     <td>
                                     	<c:choose>
-                                    		<c:when test="${r.getPoint(2) != null}">${ r.getPoint(2) }</c:when>
+                                    		<c:when test="${ r.getPoint(2) != null}">${ r.getPoint(2) }</c:when>
                                     		<c:otherwise>-</c:otherwise>
                                     	</c:choose>
                                     </td>

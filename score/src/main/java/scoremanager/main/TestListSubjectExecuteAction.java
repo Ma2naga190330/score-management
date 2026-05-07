@@ -52,6 +52,7 @@ public class TestListSubjectExecuteAction extends Action{
 		
 		if (entYear == 0 || classNum.equals("0") || subjectCd.equals("0")) {
 			req.setAttribute("error", "入学年度とクラスと科目を選択してください");
+			System.out.println("年度・クラス・科目なし");
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
 			return;
 		}
@@ -61,6 +62,14 @@ public class TestListSubjectExecuteAction extends Action{
 		TestListSubjectDao tsbDao = new TestListSubjectDao();
 		System.out.println("filter>>"+entYear+" "+classNum+" "+subject+" "+school);
 		List<TestListSubject> list = tsbDao.filter(entYear, classNum, subject, school);
+		System.out.println("list>>"+list);
+		if  (list.size()==0) {
+			req.setAttribute("error", "学生情報が存在しませんでした");
+			System.out.println("学生情報存在しない");
+			req.getRequestDispatcher("test_list.jsp").forward(req, res);
+			return;
+		}
+		
 		for (TestListSubject tls : list) {
 			if (tls.getPoint(1) != null) {
 				System.out.println("1回目"+tls.getPoint(1));
@@ -72,6 +81,7 @@ public class TestListSubjectExecuteAction extends Action{
 		System.out.println("list>>"+list.size());
 		req.setAttribute("subject", subject);
 		req.setAttribute("subjectResults", list);
+		System.out.println("正常処理");
 		req.getRequestDispatcher("test_list_subject.jsp").forward(req, res);
 	}
 }
