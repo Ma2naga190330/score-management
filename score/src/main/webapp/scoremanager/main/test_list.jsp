@@ -11,8 +11,9 @@
                 成績参照
             </h2>   	
             <form action="TestListSubjectExecute.action" method="post">
-                <div class="row border mx-3 mb-3 py-2 align-items-center rounded">
-                    <p>科目情報</p>
+                <div class="row border mx-4 py-1 align-items-center rounded">
+
+					<div>科目情報</div>
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
                         <select name="f1" class="form-select">
@@ -52,7 +53,6 @@
                     </c:if>
             </form>
             <form action="TestListStudentExecute.action" method="post">
-				
 				<div class="col-12 my-3">
 					<hr class="my-0" style="border-top: opacity: 10;">
 				</div>
@@ -68,6 +68,7 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
+                 </div>
             </form>
 
 			<p class="text-primary mx-3">
