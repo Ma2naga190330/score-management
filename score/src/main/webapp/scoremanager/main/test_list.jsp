@@ -12,7 +12,7 @@
             </h2>   	
             <form action="TestListSubjectExecute.action" method="post">
                 <div class="row border mx-4 py-1 align-items-center rounded">
-                	<div class="hstack gap-3">
+
 					<div>科目情報</div>
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
@@ -46,7 +46,6 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
-                    </div>
                     <c:if test="${!empty error }">
                     	<div>
                     		${error }
@@ -54,17 +53,11 @@
                     </c:if>
             </form>
             <form action="TestListStudentExecute.action" method="post">
-<<<<<<< HEAD
-				<div class="hstack gap-3">
-					<div>学生情報</div>
-=======
-				
 				<div class="col-12 my-3">
 					<hr class="my-0" style="border-top: opacity: 10;">
 				</div>
 				
 					<p>学生情報</p>
->>>>>>> refs/remotes/origin/test_manager_correct
                     <div class="col-3">
                     	
                         <label class="form-label">学生番号</label>
@@ -75,11 +68,7 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
-<<<<<<< HEAD
-                    
                  </div>
-=======
->>>>>>> refs/remotes/origin/test_manager_correct
             </form>
 
 			<p class="text-primary mx-3">
