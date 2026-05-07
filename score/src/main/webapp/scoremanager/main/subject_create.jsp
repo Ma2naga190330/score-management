@@ -19,14 +19,14 @@
 					<label class="form-label" for="subject-cd-input">科目コード</label>
 					<input type="text" class="form-control" name="cd" value="${cd}"
 						id="subject-cd-input" placeholder="科目コードを入力してください"
-						maxlength="3">
+						maxlength="3" minlength="3" required>
 				</div>
 				
 				<div class="mb-3">
 					<label class="form-label" for="subject-name-input">科目名</label>
 					<input type="text" class="form-control" name="name" value="${name}"
 						id="subject-name-input" placeholder="科目名を入力してください"
-						maxlength="20">
+						maxlength="20" required>
 				</div>
 				
 				<div class="d-flex align-items-center gap-3 mt-4">
@@ -35,7 +35,9 @@
 				
 				<div class="d-flex align-items-center gap-3 mt-2">
 					<a href="SubjectList.action">戻る</a>
+					
 				</div>
+				<div class="mt-2 text-warning">${error}</div>
 			</form>
 			</section>
 	</c:param>
