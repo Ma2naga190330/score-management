@@ -7,10 +7,10 @@ import javax.sql.DataSource;
 
 import jakarta.annotation.Resource;
 
-@Resource(name="jdbc/h2db",type=javax.sql.DataSource.class)
+@Resource(name="jdbc/h2",type=javax.sql.DataSource.class)
 public class Dao {
 	static DataSource ds;
-	String url = "jdbc:h2:/home/ubuntu/h2data/point";
+	String url = "jdbc:comp/env/jdbc/h2";
 	
 	public Connection getConnection() throws Exception{
 		if (ds==null) {
