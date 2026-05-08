@@ -81,6 +81,13 @@ public class TestRegistExecuteAction extends Action {
 				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 				return;
 			}
+			
+			if(list.size() == 0) {
+				request.setAttribute("errors", "入学年度とクラスと科目と回数を選択してください");
+				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+				return;
+			}
+			
 			System.out.println("for>end");
 			TestDao dao = new TestDao();
 			dao.save(list);

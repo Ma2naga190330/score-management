@@ -65,8 +65,14 @@
                     <div class="col-1 text-center">
                         <button class="btn btn-secondary mt-4" type="submit">検索</button>
                     </div>
+				   	<c:if test="${!empty errors}">
+                    	<div>
+                    		${errors}
+                    	</div>
+                    </c:if>
 
                     <div class="mt-2 text-warning">${errors.get("search")}</div>
+                    
                 </div>
             </form>
 
