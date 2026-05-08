@@ -51,6 +51,7 @@
 				</div>
 				<!-- 戻るボタン -->
 				<a href="StudentList.action">戻る</a>
+				
 			</form>
 		</section>
 	</c:param>

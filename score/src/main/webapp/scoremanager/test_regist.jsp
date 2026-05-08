@@ -65,14 +65,8 @@
                     <div class="col-1 text-center">
                         <button class="btn btn-secondary mt-4" type="submit">検索</button>
                     </div>
-				   	<c:if test="${!empty errors}">
-                    	<div>
-                    		${errors}
-                    	</div>
-                    </c:if>
 
                     <div class="mt-2 text-warning">${errors.get("search")}</div>
-                    
                 </div>
             </form>
 
@@ -118,9 +112,6 @@
                         <button type="submit" class="btn btn-primary">登録して終了</button>
                     </div>
                 </form>
-            </c:if>
-            <c:if test="${tests == null || tests.size() == 0}">
-            	<p>データがありません</p>
             </c:if>
 
         </section>

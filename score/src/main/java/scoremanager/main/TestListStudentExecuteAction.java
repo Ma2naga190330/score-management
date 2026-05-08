@@ -23,8 +23,12 @@ public class TestListStudentExecuteAction extends Action{
 		String studentNo = req.getParameter("f4");
 		StudentDao sDao = new StudentDao();
 		Student student = sDao.get(studentNo);
+		if (student == null) {
+			req.getRequestDispatcher("TestList.action").forward(req, res);
+		}
 		TestListStudentDao tlsDao = new TestListStudentDao();
 		List<TestListStudent> list = tlsDao.filter(student);
+		System.out.println("tlsDao.filter>>"+list.size());
 		req.setAttribute("student", student);
 		req.setAttribute("test_student", list);
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);

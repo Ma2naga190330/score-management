@@ -46,7 +46,6 @@ public class TestListAction extends Action {
             req.setAttribute("entYearList", entYearSet);
             req.setAttribute("classList", classList);
             req.setAttribute("subjectList", subjectList);
-
             req.getRequestDispatcher("test_list.jsp").forward(req, res);
 
         } catch (Exception e) {

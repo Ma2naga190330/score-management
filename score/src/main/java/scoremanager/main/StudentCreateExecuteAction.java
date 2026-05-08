@@ -61,6 +61,17 @@ public class StudentCreateExecuteAction extends Action {
 			stu.setSchool(teacher.getSchool());
 			stu.setIsAttend(true);
 			
+			if(ent_year == 0) {
+				request.setAttribute("errors", "入学年度を選択してください");
+				request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			}
+			
+			if(class_num == null) {
+				request.setAttribute("errors", "クラスを選択してください");
+				request.getRequestDispatcher("student_create.jsp").forward(request, response);
+			}
+			
+			
 			StudentDao dao = new StudentDao();
 			boolean daoFlag = dao.save(stu);
 			System.out.println("flag>>"+flag);
