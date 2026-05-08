@@ -83,7 +83,8 @@ public class TestRegistExecuteAction extends Action {
 			}
 			
 			if(list.size() == 0) {
-				request.setAttribute("errors", "入学年度とクラスと科目と回数を選択してください");
+				String errorMessage = "入学年度とクラスと科目と回数を選択してください";
+				request.setAttribute("error", errorMessage);
 				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 				return;
 			}

@@ -47,7 +47,7 @@
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
                     <c:if test="${!empty error }">
-                    	<div>
+                    	<div class="mt-2 text-warning">
                     		${error }
                     	</div>
                     </c:if>
