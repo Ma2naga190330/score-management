@@ -66,8 +66,8 @@
                         <button class="btn btn-secondary mt-4" type="submit">検索</button>
                     </div>
                     <div class="mt-2 text-warning">
-					   	<c:if test="${!empty error}">
-	                    		${error}
+					   	<c:if test="${!empty errors}">
+	                    		${errors.get("filter")}
 	                    </c:if>
                     </div>
                     
