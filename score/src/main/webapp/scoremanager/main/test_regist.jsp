@@ -70,8 +70,6 @@
                     		${errors}
                     	</div>
                     </c:if>
-
-                    <div class="mt-2 text-warning">${errors.get("search")}</div>
                     
                 </div>
             </form>
