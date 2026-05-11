@@ -27,6 +27,7 @@ public class StudentCreateAction extends Action {
 		// セッションを獲得
 		String no = (String) session.getAttribute("no");
 		String name = (String) session.getAttribute("name");
+		// セッション(no,name）削除
 		
 		if (no == null) {
 			no = "";
