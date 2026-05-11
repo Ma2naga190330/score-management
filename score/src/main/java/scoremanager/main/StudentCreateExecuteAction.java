@@ -61,9 +61,13 @@ public class StudentCreateExecuteAction extends Action {
 			stu.setSchool(teacher.getSchool());
 			stu.setIsAttend(true);
 			
+			// 学生番号と氏名をセッションに保存
+			session.setAttribute("no",no);
+			session.setAttribute("name",name);
+			
 			if(ent_year == 0) {
 				request.setAttribute("errors", "入学年度を選択してください");
-				request.getRequestDispatcher("student_create.jsp").forward(request, response);
+				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
 			}
 			
 			StudentDao dao = new StudentDao();
@@ -72,9 +76,7 @@ public class StudentCreateExecuteAction extends Action {
 			
 			// 学生一覧を見に行き、重複しているものを見つけるために必要
 			Student stuNo = dao.get(no);
-			// 学生番号と氏名をセッションに保存
-			session.setAttribute("no",no);
-			session.setAttribute("name",name);
+
 			// 学生重複エラー
 			if (stuNo != null) {
 				request.setAttribute("errors", "学生番号が重複しています。");
