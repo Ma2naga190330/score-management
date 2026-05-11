@@ -19,7 +19,7 @@
 							<option value="${year}"<c:if test="${year==f1}">selected</c:if>>${year}</option>
 						</c:forEach>
 					</select>
-					<div class="pb-2">
+					<div class="mt-2 text-warning">
 						<c:if test="${ not empty ent_error }">${ ent_error }</c:if>
 					</div>
 				<!-- 学生番号の入力 -->
@@ -28,6 +28,11 @@
                     <input type="text" name="no" class="form-control"
                            value="${no}" id="student-num-input"
                            maxlength="30" placeholder="学生番号を入力してください" required>
+                <c:if test="${!empty errors }">
+                    <div>
+                    	${errors }
+                    </div>
+                </c:if>
                 </div>
 				<!-- 氏名の入力 -->
 				<div class="mb-3">
@@ -39,18 +44,18 @@
 				<!-- クラスの入力 -->
 				<label class="form-label" for="student-class-select">クラス</label>
 				<select class="form-select" id="student-class-select" name="class_num">
-						<option value="0">------------</option>
 						<c:forEach var="num" items ="${class_num_set}">
 							<option value ="${num}">${num}</option>
 						</c:forEach>
 				</select>
-				<c:if test="${ not empty class_num_error }">${ class_num_error }</c:if>
+				
 				<!-- 登録して終了するボタン -->
 				<div class="mt-3 mb-3">
 					<button class="btn btn-secondary p-2" id="filter-end-button" type="submit">登録して終了</button>
 				</div>
 				<!-- 戻るボタン -->
 				<a href="StudentList.action">戻る</a>
+				
 				
 			</form>
 		</section>
