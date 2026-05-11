@@ -46,11 +46,6 @@
                     <div class="col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
-                    <c:if test="${!empty error }">
-                    	<div>
-                    		${error }
-                    	</div>
-                    </c:if>
             </form>
             <form action="TestListStudentExecute.action" method="post">
 				<div class="col-12 my-3">
@@ -62,7 +57,7 @@
                     	
                         <label class="form-label">学生番号</label>
                         <input type="text" name="f4" class="form-control"
-                               placeholder="学生番号を入力してください">
+                               placeholder="学生番号を入力してください" required>
                     </div>
 
                     <div class="col-2 text-center">
@@ -74,7 +69,11 @@
 			<p class="text-primary mx-3">
 			    科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
 			</p>
-
+			<c:if test="${!empty error }">
+				<div>
+                    ${error }
+                </div>
+            </c:if>
         </section>
     </c:param>
 </c:import>
