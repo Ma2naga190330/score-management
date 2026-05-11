@@ -65,13 +65,11 @@
                     <div class="col-1 text-center">
                         <button class="btn btn-secondary mt-4" type="submit">検索</button>
                     </div>
-				   	<c:if test="${!empty errors}">
-                    	<div>
-                    		${errors}
-                    	</div>
-                    </c:if>
-
-                    <div class="mt-2 text-warning">${errors.get("search")}</div>
+                    <div class="mt-2 text-warning">
+					   	<c:if test="${!empty errors}">
+	                    		${errors.get("filter")}
+	                    </c:if>
+                    </div>
                     
                 </div>
             </form>
@@ -103,7 +101,9 @@
                                 <td>
                                 	<input type="hidden" name="student_no" value="${t.student.no}">
                                     <input type="number" name="point" class="form-control" value="${t.point}" required>
-                                    <c:if test="${ not empty pointError }">${ pointError.get(t.student.no) }</c:if>
+                                    <c:if test="${ not empty pointError }">
+								    <span class="text-warning">${ pointError.get(t.student.no) }</span>
+								</c:if>
                                 </td>
                                 <td><a href="TestDelete.action?student_no=${t.student.no }&subject_cd=${sub.cd}&no=${f4}">削除</a></td>
                             </tr>
