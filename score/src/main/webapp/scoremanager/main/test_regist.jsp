@@ -101,7 +101,9 @@
                                 <td>
                                 	<input type="hidden" name="student_no" value="${t.student.no}">
                                     <input type="number" name="point" class="form-control" value="${t.point}" required>
-                                    <c:if test="${ not empty pointError }">${ pointError.get(t.student.no) }</c:if>
+                                    <c:if test="${ not empty pointError }">
+								    <span class="text-warning">${ pointError.get(t.student.no) }</span>
+								</c:if>
                                 </td>
                                 <td><a href="TestDelete.action?student_no=${t.student.no }&subject_cd=${sub.cd}&no=${f4}">削除</a></td>
                             </tr>
