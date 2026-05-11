@@ -28,6 +28,8 @@ public class StudentCreateAction extends Action {
 		String no = (String) session.getAttribute("no");
 		String name = (String) session.getAttribute("name");
 		// セッション(no,name）削除
+		session.removeAttribute("no");
+		session.removeAttribute("name");
 		
 		if (no == null) {
 			no = "";
