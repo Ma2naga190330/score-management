@@ -11,9 +11,10 @@
                 成績参照
             </h2>   	
             <form action="TestListSubjectExecute.action" method="post">
-                <div class="row border mx-4 py-1 align-items-center rounded">
-
-					<div>科目情報</div>
+                <div class="row border mx-1 py-1 align-items-center rounded">
+                	<div class="p-2">科目情報</div>
+                	<div class="hstack gap-4">
+					<!-- 科目情報入力欄 -->
                     <div class="col-3">
                         <label class="form-label">入学年度</label>
                         <select name="f1" class="form-select">
@@ -43,40 +44,38 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="col-2 text-center">
-                        <button type="submit" class="btn btn-secondary mt-4">検索</button>
+                    <div class="col-2 text-center px-1">
+                        <button type="submit" class="btn btn-secondary mt-4 mx-1">検索</button>
                     </div>
-<<<<<<< HEAD
+                    </div>
                     <c:if test="${!empty error }">
                     	<div class="mt-2 text-warning">
                     		${error }
                     	</div>
                     </c:if>
-=======
->>>>>>> refs/remotes/origin/test_manager_correct
             </form>
-            <form action="TestListStudentExecute.action" method="post">
+            
 				<div class="col-12 my-3">
 					<hr class="my-0" style="border-top: opacity: 10;">
 				</div>
-				
-					<p>学生情報</p>
-                    <div class="col-3">
-                    	
+			<form action="TestListStudentExecute.action" method="post">
+			<div class="p-2">学生情報</div>
+			<div class="hstack gap-4">
+                    <div class="p-2 col-3">
                         <label class="form-label">学生番号</label>
                         <input type="text" name="f4" class="form-control"
                                placeholder="学生番号を入力してください" required>
                     </div>
-
-                    <div class="col-2 text-center">
+                    <div class="p-2 col-2 text-center">
                         <button type="submit" class="btn btn-secondary mt-4">検索</button>
                     </div>
-                 </div>
+			</div>
             </form>
-
+			</div>
 			<p class="text-primary mx-3">
 			    科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
 			</p>
+			
 			<c:if test="${!empty error }">
 				<div>
                     ${error }
