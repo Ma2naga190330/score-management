@@ -61,20 +61,28 @@ public class StudentCreateExecuteAction extends Action {
 			stu.setSchool(teacher.getSchool());
 			stu.setIsAttend(true);
 			
+			// 学生番号と氏名をセッションに保存
+			session.setAttribute("no",no);
+			session.setAttribute("name",name);
+			
 			if(ent_year == 0) {
 				request.setAttribute("errors", "入学年度を選択してください");
-				request.getRequestDispatcher("student_create.jsp").forward(request, response);
+				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
 			}
-			
-			if(class_num == null) {
-				request.setAttribute("errors", "クラスを選択してください");
-				request.getRequestDispatcher("student_create.jsp").forward(request, response);
-			}
-			
 			
 			StudentDao dao = new StudentDao();
 			boolean daoFlag = dao.save(stu);
 			System.out.println("flag>>"+flag);
+			
+			// 学生一覧を見に行き、重複しているものを見つけるために必要
+			Student stuNo = dao.get(no);
+
+			// 学生重複エラー
+			if (stuNo != null) {
+				request.setAttribute("errors", "学生番号が重複しています。");
+				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
+			}
+			
 			if (daoFlag) {
 				request.getRequestDispatcher("student_create_done.jsp").forward(request,response);
 			}else {

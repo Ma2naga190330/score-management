@@ -52,9 +52,11 @@
 
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">変更</button>
-                    <a href="StudentList.action" class="btn btn-secondary ms-2">戻る</a>
                 </div>
-
+                
+                <div class="mt-2">
+					<a href="StudentList.action">戻る</a>
+				</div>
             </form>
 
         </section>
