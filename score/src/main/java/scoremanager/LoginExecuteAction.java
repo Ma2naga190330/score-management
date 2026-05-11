@@ -21,12 +21,15 @@ public class LoginExecuteAction extends Action{
 			t.setPassword(password);
 			TeacherDao tDao = new TeacherDao();
 			Teacher user = tDao.loginUser(t);
+			HttpSession session = req.getSession();
+			session.setAttribute("id",id);
+			
+			
 			if (user != null) {
-				HttpSession session = req.getSession();
 				session.setAttribute("user", user);
 				req.getRequestDispatcher("main/Menu.action").forward(req, res);
 			}else {
-				String error = "IDまたはPasswordが間違っています";
+				String error = "IDまたはパスワードが確認できませんでした";
 				req.setAttribute("error", error);
 				req.getRequestDispatcher("Login.action").forward(req, res);
 				return;

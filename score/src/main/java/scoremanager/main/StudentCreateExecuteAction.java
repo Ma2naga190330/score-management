@@ -26,17 +26,19 @@ public class StudentCreateExecuteAction extends Action {
 			String class_num = request.getParameter("class_num");
 			HttpSession session = request.getSession();
 			Teacher teacher = (Teacher) session.getAttribute("user");
-			// エラーフラグ
-			boolean flag = false;
-			if (ent_year == 0) {
-				flag = true;
-				request.setAttribute("ent_error","入学年度を設定してください");
-			}
-			if (class_num.equals("0")) {
-				flag = true;
-				request.setAttribute("class_num_error", "クラスを設定してください");
-			}
-			if (flag) {
+			Student stu = new Student();
+			stu.setEntYear(ent_year);
+			stu.setNo(no);
+			stu.setName(name);
+			stu.setClassNum(class_num);
+			stu.setSchool(teacher.getSchool());
+			stu.setIsAttend(true);
+			
+			// 学生番号と氏名をセッションに保存
+			session.setAttribute("no",no);
+			session.setAttribute("name",name);
+			System.out.println("entYear>>"+ent_year);
+			if(ent_year == 0) {
 				LocalDate todayDate = LocalDate.now();
 				int year = todayDate.getYear();
 				List<Integer>entYearSet = new ArrayList<>();
@@ -50,20 +52,23 @@ public class StudentCreateExecuteAction extends Action {
 				
 				request.setAttribute("class_num_set", list);
 				request.setAttribute("ent_year_set", entYearSet);
-				request.getRequestDispatcher("student_create.jsp").forward(request,response);
-				return;
+				
+				request.setAttribute("errors", "入学年度を選択してください");
+				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
 			}
-			Student stu = new Student();
-			stu.setEntYear(ent_year);
-			stu.setNo(no);
-			stu.setName(name);
-			stu.setClassNum(class_num);
-			stu.setSchool(teacher.getSchool());
-			stu.setIsAttend(true);
-			
 			StudentDao dao = new StudentDao();
+			// 学生一覧を見に行き、重複しているものを見つけるために必要
+			Student stuNo = dao.get(no);
+
+			// 学生重複エラー
+			if (stuNo != null) {
+				request.setAttribute("errors", "学生番号が重複しています。");
+				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
+			}		
+			
 			boolean daoFlag = dao.save(stu);
-			System.out.println("flag>>"+flag);
+			
+			
 			if (daoFlag) {
 				request.getRequestDispatcher("student_create_done.jsp").forward(request,response);
 			}else {

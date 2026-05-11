@@ -3,6 +3,7 @@ package scoremanager.main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bean.School;
 import bean.Student;
@@ -81,6 +82,15 @@ public class TestRegistExecuteAction extends Action {
 				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 				return;
 			}
+			
+			if(list.size() == 0) {
+				Map<String, String> errors = new HashMap<>();
+				errors.put("filter", "入学年度とクラスと科目と回数を選択してください");
+				request.setAttribute("errors", errors);
+				request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+				return;
+			}
+			
 			System.out.println("for>end");
 			TestDao dao = new TestDao();
 			dao.save(list);

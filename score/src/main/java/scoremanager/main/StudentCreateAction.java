@@ -24,6 +24,20 @@ public class StudentCreateAction extends Action {
 		// セッションを取得
 		HttpSession session = request.getSession();
 		Teacher user = (Teacher) session.getAttribute("user");
+		// セッションを獲得
+		String no = (String) session.getAttribute("no");
+		String name = (String) session.getAttribute("name");
+		// セッション(no,name）削除
+		session.removeAttribute("no");
+		session.removeAttribute("name");
+		
+		if (no == null) {
+			no = "";
+		}
+		
+		if (name == null) {
+			name = "";
+		}
 		
 		LocalDate todayDate = LocalDate.now();
 		int year = todayDate.getYear();
