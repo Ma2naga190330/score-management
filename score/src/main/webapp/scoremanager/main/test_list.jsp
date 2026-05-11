@@ -37,7 +37,7 @@
 
                     <div class="col-3">
                         <label class="form-label">科目</label>
-                        <select name="f3" class="formw-select">
+                        <select name="f3" class="form-select">
                             <option value="0">------------</option>
                             <c:forEach var="s" items="${subjectList}">
                                 <option value="${s.cd}">${s.name}</option>
