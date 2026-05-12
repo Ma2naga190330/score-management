@@ -38,6 +38,8 @@ public class StudentCreateAction extends Action {
 		if (name == null) {
 			name = "";
 		}
+		request.setAttribute("no", no);
+		request.setAttribute("name", name);
 		
 		LocalDate todayDate = LocalDate.now();
 		int year = todayDate.getYear();

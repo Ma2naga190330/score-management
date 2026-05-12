@@ -16,7 +16,7 @@ public class ClassNumDao extends Dao{
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			statement = connection.prepareStatement("select * from class_num where school_cd = ?");
+			statement = connection.prepareStatement("select * from class_num where school_cd = ? class_flag = true");
 			statement.setString(1,school.getCd());
 			ResultSet rSet = statement.executeQuery();
 			
@@ -54,7 +54,7 @@ public class ClassNumDao extends Dao{
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			statement = connection.prepareStatement("select * from class_num where class_num=? and school_cd = ?");
+			statement = connection.prepareStatement("select * from class_num where class_num=? and school_cd = ? and class_flag = true");
 			statement.setString(1,class_num);
 			statement.setString(2,school.getCd());
 			ResultSet rSet = statement.executeQuery();
@@ -93,7 +93,7 @@ public class ClassNumDao extends Dao{
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			statement = connection.prepareStatement("select class_num from class_num where school_cd = ? order by class_num");
+			statement = connection.prepareStatement("select class_num from class_num where school_cd = ? and test_flag = true order by class_num");
 			statement.setString(1,school.getCd());
 			ResultSet rSet = statement.executeQuery();
 			while (rSet.next()) {
@@ -172,9 +172,9 @@ public class ClassNumDao extends Dao{
 		try {
 			String school_cd = classNum.getSchool().getCd();
 			String class_num = classNum.getClassNum();
-			statement = connection.prepareStatement("delete from class_num where class_num = ? and school_cd = ?");
-			statement.setString(1, school_cd);
-            statement.setString(2, class_num);
+			statement = connection.prepareStatement("update CLASS_NUM set class_flag = false where class_num = ? and school_cd = ?");
+			statement.setString(2, school_cd);
+            statement.setString(1, class_num);
 			int num = statement.executeUpdate();
 			if(num > 0) {
 				return true;
