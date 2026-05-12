@@ -53,7 +53,7 @@ public class StudentCreateExecuteAction extends Action {
 				request.setAttribute("class_num_set", list);
 				request.setAttribute("ent_year_set", entYearSet);
 				
-				request.setAttribute("errors", "入学年度を選択してください");
+				request.setAttribute("ent_error", "入学年度を選択してください");
 				request.getRequestDispatcher("StudentCreate.action").forward(request, response);
 			}
 			StudentDao dao = new StudentDao();
