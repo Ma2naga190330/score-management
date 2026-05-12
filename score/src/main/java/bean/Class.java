@@ -2,19 +2,18 @@ package bean;
 
 import java.io.Serializable;
 
-public class ClassNum implements Serializable{
-	// word修正 class_num > classNum
-	private String classNum;
+public class Class implements Serializable{
 	private School school;
+	private String class_num;
 	private String class_name;
 	private boolean class_flag;
 	
 	public School getSchool() {
 		return school;
 	}
-	// word修正 getClass_num > getClassNum
+	
 	public String getClassNum() {
-		return classNum;
+		return class_num;
 	}
 	
 	public String getClassName() {
@@ -28,9 +27,9 @@ public class ClassNum implements Serializable{
 	public void setSchool(School school) {
 		this.school = school;
 	}
-	// word修正 setClass_num > setClassNum
+	
 	public void setClassNum(String classNum) {
-		this.classNum = classNum;
+		this.class_num = classNum;
 	}
 	
 	public void setClassName(String className) {
