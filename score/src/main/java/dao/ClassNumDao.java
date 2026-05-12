@@ -11,6 +11,44 @@ import bean.ClassNum;
 import bean.School;
 
 public class ClassNumDao extends Dao{
+	public List<ClassNum> get(School school)throws Exception{
+		List<ClassNum> c_list = new ArrayList<>();
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		try {
+			statement = connection.prepareStatement("select * from class_num where school_cd = ?");
+			statement.setString(1,school.getCd());
+			ResultSet rSet = statement.executeQuery();
+			
+			SchoolDao sDao = new SchoolDao();
+			while(rSet.next()) {
+				ClassNum classNum = new ClassNum();
+				classNum.setClassNum(rSet.getString("class_num"));
+				classNum.setClassName(rSet.getString("class_name"));
+				classNum.setClassFlag(rSet.getBoolean("class_flag"));
+				classNum.setSchool(sDao.get(rSet.getString("school_cd")));
+				c_list.add(classNum);
+			}
+		}catch (Exception e) {
+			throw e;
+		}finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				}catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				}catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return c_list;
+	}
 	public ClassNum get(String class_num,School school)throws Exception{
 		ClassNum classNum = new ClassNum();
 		Connection connection = getConnection();

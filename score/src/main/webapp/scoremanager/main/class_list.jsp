@@ -11,13 +11,13 @@
     <c:param name="content">
         <section class="me-4">
             <h2 class="h2 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">クラス管理</h2>
-            
+			<p>${school.cd}|${school.name}</p>
             <div class="text-end mb-3">
                 <a href="SubjectCreate.action">新規登録</a>
             </div>
 
             <c:choose>
-                <c:when test="${subjects.size()>0}">
+                <c:when test="${c_list.size()>0}">
                     <table class="table table-hover">
                             <tr>
                                 <th>クラス番号</th>
@@ -25,12 +25,12 @@
                                 <th></th>
                                 <th></th>
                             </tr>
-                            <c:forEach var="subject" items="${subjects}">
+                            <c:forEach var="cl" items="${c_list}">
                                 <tr>
-                                    <td>${subject.cd}</td>
-                                    <td>${subject.name}</td>
-                                    <td><a href="SubjectUpdate.action?cd=${subject.cd}">変更</a></td>
-                                    <td><a href="SubjectDelete.action?cd=${subject.cd}">削除</a></td>
+                                    <td>${cl.classNum}</td>
+                                    <td>${cl.className}</td>
+                                    <td><a href="ClassUpdate.action?cd=${cl.classNum}">変更</a></td>
+                                    <td><a href="ClassDelete.action?cd=${cl.classNum}">削除</a></td>
                                 </tr>
                             </c:forEach>
                     </table>
