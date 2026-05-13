@@ -26,7 +26,7 @@ public class ClassDeleteExecuteAction extends Action{
 		if (cDao.delete(classNum)) {
 			req.setAttribute("subject_cd", class_num);
 			req.setAttribute("class_name", class_name);
-			req.getRequestDispatcher("class_delete_done.jsp");
+			req.getRequestDispatcher("class_delete_done.jsp").forward(req, res);;
 		}else {
 			req.getRequestDispatcher("/error.jsp");
 		}
