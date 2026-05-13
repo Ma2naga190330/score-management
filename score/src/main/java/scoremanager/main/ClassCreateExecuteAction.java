@@ -16,7 +16,7 @@ public class ClassCreateExecuteAction extends Action{
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		School school = teacher.getSchool();
 		
-		String num = req.getParameter("num");
+		String num = req.getParameter("cd");
 		String name = req.getParameter("name");
 		boolean flag = false;
 		

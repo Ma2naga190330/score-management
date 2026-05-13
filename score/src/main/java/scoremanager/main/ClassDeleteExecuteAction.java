@@ -15,7 +15,7 @@ public class ClassDeleteExecuteAction extends Action{
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		
-		String class_num = req.getParameter("subject_cd");
+		String class_num = req.getParameter("class_num");
 		
 		ClassNumDao cDao = new ClassNumDao();
 		ClassNum classNum = new ClassNum();
