@@ -8,30 +8,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class ClassNumUpdateExecuteAction extends Action{
+public class ClassUpdateAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res)throws Exception{
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		
 		String num = req.getParameter("num");
-		String name = req.getParameter("naem");
+//		String name = req.getParameter("name");
 		
 		ClassNumDao cDao = new ClassNumDao();
-		ClassNum classNum = new ClassNum();
 		
-		classNum.setClassNum(num);
-		classNum.setClassName(name);
-		classNum.setSchool(teacher.getSchool());
+		ClassNum classNum = cDao.get(num, teacher.getSchool());
 		
-		boolean flag = cDao.save(classNum);
-		if(flag) {
-			req.setAttribute("num", num);
-			req.setAttribute("name", name);
-			req.getRequestDispatcher("class_update_done.jsp").forward(req, res);
-		} else {
-			req.getRequestDispatcher("/error.jsp").forward(req, res);
-		}
-		
+		req.setAttribute("num", classNum.getClassNum());
+		req.setAttribute("name", classNum.getClassName());
+		req.getRequestDispatcher("class_update.jsp").forward(req,res);
 	}
 }

@@ -13,7 +13,7 @@
             <h2 class="h2 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">クラス管理</h2>
 			<h3>学校コード:${school.cd}|学校名:${school.name}</h3>
             <div class="text-end mb-3">
-                <a href="SubjectCreate.action">新規登録</a>
+                <a href="ClassCreate.action">新規登録</a>
             </div>
 
             <c:choose>
