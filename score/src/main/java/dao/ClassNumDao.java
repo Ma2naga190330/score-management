@@ -131,13 +131,13 @@ public class ClassNumDao extends Dao{
 				statement = connection.prepareStatement("insert into class_num(class_num, class_name, school_cd, class_flag) values(?, ?, ?, ?)");
 				statement.setString(1, classNum.getClassNum());
 				statement.setString(2, classNum.getClassName());
-				statement.setBoolean(3,classNum.getClassFlag());
-				statement.setString(4, classNum.getSchool().getCd());
+				statement.setBoolean(4,true);
+				statement.setString(3, classNum.getSchool().getCd());
 			}else {
 				statement = connection.prepareStatement("update class_num set class_name = ?, class_flag = ? where class_num = ? and school_cd = ?");
-				statement.setString(1, classNum.getClassNum());
-				statement.setString(2, classNum.getClassName());
-				statement.setBoolean(3,classNum.getClassFlag());
+				statement.setString(1, classNum.getClassName());
+				statement.setBoolean(2,true);
+				statement.setString(3, classNum.getClassNum());
 				statement.setString(4, classNum.getSchool().getCd());
 			}
 			count = statement.executeUpdate();

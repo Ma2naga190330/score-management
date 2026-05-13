@@ -16,7 +16,7 @@
 				</label>
 			</div>
 			<div class="pt-5">
-				<a href=".action">クラス管理一覧</a>
+				<a href="ClassList.action">クラス管理一覧</a>
 			</div>
 		</div>
 	</c:param>

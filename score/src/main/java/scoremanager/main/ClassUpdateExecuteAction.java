@@ -14,12 +14,12 @@ public class ClassUpdateExecuteAction extends Action{
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		
-		String num = req.getParameter("num");
-		String name = req.getParameter("naem");
+		String num = req.getParameter("cd");
+		String name = req.getParameter("name");
 		
 		ClassNumDao cDao = new ClassNumDao();
 		ClassNum classNum = new ClassNum();
-		
+		System.out.println(num);
 		classNum.setClassNum(num);
 		classNum.setClassName(name);
 		classNum.setSchool(teacher.getSchool());
