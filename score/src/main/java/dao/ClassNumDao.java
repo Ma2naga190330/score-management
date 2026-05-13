@@ -93,7 +93,7 @@ public class ClassNumDao extends Dao{
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			statement = connection.prepareStatement("select class_num from class_num where school_cd = ? and test_flag = true order by class_num");
+			statement = connection.prepareStatement("select class_num from class_num where school_cd = ? and class_flag = true order by class_num");
 			statement.setString(1,school.getCd());
 			ResultSet rSet = statement.executeQuery();
 			while (rSet.next()) {
