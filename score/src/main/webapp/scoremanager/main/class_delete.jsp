@@ -15,6 +15,7 @@
  			
  			<div class="mt-4 mb-4">
  				<p class="fs-5 btn-secondary">「${delete_class.classNum}(${delete_class.className})」を削除してもよろしいですか</p>
+
  			</div>
  			
  			<form action="ClassDeleteExecute.action" method="post">
@@ -26,7 +27,7 @@
  				</div>
  				
  				<div class="d-flex align-items-center gap-2 mt-5">
- 					<a href=".action">戻る</a>
+ 					<a href="ClassList.action">戻る</a>
  				</div>
  			</form>
  		</section>

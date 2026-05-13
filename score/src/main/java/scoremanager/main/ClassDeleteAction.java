@@ -19,6 +19,8 @@ public class ClassDeleteAction extends Action{
 		ClassNum classNum = cDao.get(cd, teacher.getSchool());
 
 		req.setAttribute("delete_class", classNum);
+		req.setAttribute("subject_cd", classNum.getClassNum());
+		req.setAttribute("class_name", classNum.getClassName());
 		req.getRequestDispatcher("class_delete.jsp").forward(req, res);
 	}
 }
