@@ -21,7 +21,7 @@
 			</div>
 			
 			<div class="d-flex alian-items-center gap-5 mt-2">
-				<a href=".action">戻る</a>
+				<a href="ClassList.action">戻る</a>
 			</div>
 		</section>
 	</c:param>

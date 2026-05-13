@@ -16,12 +16,16 @@ public class ClassDeleteExecuteAction extends Action{
 		Teacher teacher = (Teacher) session.getAttribute("user");
 		
 		String class_num = req.getParameter("subject_cd");
+		String class_name = req.getParameter("class_name");
 		
 		ClassNumDao cDao = new ClassNumDao();
 		ClassNum classNum = new ClassNum();
 		classNum.setClassNum(class_num);
+		classNum.setClassName(class_name);
 		classNum.setSchool(teacher.getSchool());
 		if (cDao.delete(classNum)) {
+			req.setAttribute("subject_cd", class_num);
+			req.setAttribute("class_name", class_name);
 			req.getRequestDispatcher("class_delete_done.jsp");
 		}else {
 			req.getRequestDispatcher("/error.jsp");

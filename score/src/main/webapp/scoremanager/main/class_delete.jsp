@@ -15,11 +15,11 @@
  			<h2 class="h2 mb-4 fw-normal bg-secondary bg-opacity-10 py-2 px-4">クラス削除</h2>
  			
  			<div class="mt-4 mb-4">
- 				<p class="fs-5 btn-secondary">「${class_num}(${class_name})」を削除してもよろしいですか</p>
+ 				<p class="fs-5 btn-secondary">「${subject_cd}(${class_name})」を削除してもよろしいですか</p>
  			</div>
  			
- 			<form action="SubjectDeleteExecute.action" method="post">
- 				<input type="hidden" name="class_num" value="${class_num}">
+ 			<form action="ClassDeleteExecute.action" method="post">
+ 				<input type="hidden" name="class_num" value="${subject_cd}">
  				<input type="hidden" name="class_name" value="${class_name}">
  				
  				<div class="d-flex align-items-center gap-2 mt-2">
@@ -27,7 +27,7 @@
  				</div>
  				
  				<div class="d-flex align-items-center gap-2 mt-5">
- 					<a href=".action">戻る</a>
+ 					<a href="ClassList.action">戻る</a>
  				</div>
  			</form>
  		</section>
