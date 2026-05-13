@@ -14,7 +14,7 @@
 			<h2 class="h2 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">クラス管理変更</h2>
 			
 			<!-- servletに合わせて変更 -->
-			<form action=".action" method="post">
+			<form action="ClassUpdateExecute.action" method="post">
 			
 				<div class="mb-3">
 					<label class="form-label" for="class-num-input">クラス番号</label><br>
@@ -25,7 +25,7 @@
 				<div class="mb-3">
 					<label class="form-label" for="class-name-input">クラス名</label>
 					<input type="text" class="form-control" name="name" value="${name}"
-						id="subject-name-input" maxlenght="20" required>
+						id="subject-name-input" maxlength="20" required>
 				</div>
 				
 				<div class="d-flex align-items-center gap-2 mt-3">
@@ -33,7 +33,7 @@
 				</div>
 				
 				<div class="d-flex align-items-center gap-3 mt-2">
-					<a href=".action">戻る</a>
+					<a href="ClassList.action">戻る</a>
 				</div>
 			</form>
 		</section>
