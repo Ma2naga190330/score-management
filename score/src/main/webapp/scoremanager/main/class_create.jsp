@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib url="jakarta.tags.core">
 
-<c:import url="/common/base.jsp"></c:import>
+<c:import url="/common/base.jsp">
 	<c:param name="title">
 		得点管理システム
 	</c:param>
@@ -40,3 +40,4 @@
 		</form>
 		</section>
 	</c:parma>
+</c:import>
