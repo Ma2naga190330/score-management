@@ -51,7 +51,7 @@ public class TestListSubjectExecuteAction extends Action{
         req.setAttribute("subjectList", subjectList);
 		
 		if (entYear == 0 || classNum.equals("0") || subjectCd.equals("0")) {
-			req.setAttribute("error", "入学年度とクラスと科目を選択してください");
+			req.setAttribute("errors", "入学年度とクラスと科目を選択してください");
 			System.out.println("年度・クラス・科目なし");
 			req.getRequestDispatcher("test_list.jsp").forward(req, res);
 			return;
